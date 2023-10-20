@@ -30,7 +30,17 @@ const getUserByName = async (name) => {
   }
 };
 
+const getUsers = async () => {
+  try {
+    let users = await User.findAll({});
+    return users;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   createUserDB,
   getUserByName,
+  getUsers
 };
