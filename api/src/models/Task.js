@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       status: {
-        type: DataTypes.ENUM("allow", "deprecated"),
+        type: DataTypes.ENUM("ON", "OFF"),
         allowNull: false,
       },
     },

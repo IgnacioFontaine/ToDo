@@ -62,15 +62,15 @@ const updateTask = async ( id, name, status) => {
 
 const updateStatusTask = async (id, status) => {
 
-  if (status === "allow") {
+  if (status === "ON") {
         const [updatedCount, updatedRows] = await Task.update(
-            { status: "deprecated" },
+            { status: "OFF" },
             { where: { id } }
         );
           
-  } else if (status === "deprecated") {
+  } else if (status === "OFF") {
         const [updatedCount, updatedRows] = await Task.update(
-            { status: "allow" },
+            { status: "ON" },
             { where: { id } }
         );
           
