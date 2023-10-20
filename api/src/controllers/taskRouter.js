@@ -37,10 +37,56 @@ const getTasksByUser = async (id) => {
   }
 };
 
+const deleteTask = async (id) => {
+
+    const findTask = await Task.findOne({ where: { id } });
+    
+    if (!findTask) throw error("Providen id not found");
+
+    await findTask.destroy();
+    return {message: "Delete success"}
+};
+
+const updateTask = async ( id, name, status) => {
+
+        const [updatedCount, updatedRows] = await Task.update(
+            { name: name,  status: status },
+            { where: { id } }
+        );
+        if (updatedCount === 0) {
+            throw new Error('The id was not found or it is incorrect');
+        }
+
+    return { message: "updated information" };
+};
+
+const updateStatusTask = async (id, name, status) => {
+
+  if (status === "allow") {
+        const [updatedCount, updatedRows] = await Task.update(
+            { status: "deprecated" },
+            { where: { id } }
+        );
+          
+  } else if (status === "deprecated") {
+        const [updatedCount, updatedRows] = await Task.update(
+            { status: "allow" },
+            { where: { id } }
+        );
+          
+  } else {
+    throw new Error('The id was not found or it is incorrect');
+        }
+
+    return { message: "updated information" };
+};
+
 
 module.exports = {
   createTaskDB,
   getAllTask,
   getTasksByUser,
-  
+  deleteTask,
+  updateStatusTask,
+  updateTask
 };
