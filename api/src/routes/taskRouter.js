@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/modificar/:id", async (req, res) => {
+router.put("/modify/:id", async (req, res) => {
   const { id } = req.params;
   
     const { name, status  } = req.body;
@@ -49,6 +49,20 @@ router.put("/modificar/:id", async (req, res) => {
         
         const putTask = await updateTask(id, name, status);
         return res.status(200).json(putTask);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+})
+
+router.put("/modifyStatus/:id", async (req, res) => {
+  const { id } = req.params;
+  
+    const {  status  } = req.body;
+    try {
+        if (!id) return res.status(404).json({ error: 'Id not found' });
+        
+        const putStatusTask = await updateStatusTask(id, status);
+        return res.status(200).json(putStatusTask);
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
