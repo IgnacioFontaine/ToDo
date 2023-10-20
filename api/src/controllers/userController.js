@@ -39,8 +39,22 @@ const getUsers = async () => {
   }
 };
 
+const updateUser= async ( id, name,password, email) => {
+
+        const [updatedCount, updatedRows] = await Task.update(
+            { name: name, password:password ,email: email },
+            { where: { id } }
+        );
+        if (updatedCount === 0) {
+            throw new Error('The id was not found or it is incorrect');
+        }
+
+    return { message: "updated information" };
+};
+
 module.exports = {
   createUserDB,
   getUserByName,
-  getUsers
+  getUsers,
+  updateUser
 };
