@@ -60,7 +60,7 @@ const updateTask = async ( id, name, status) => {
     return { message: "updated information" };
 };
 
-const updateStatusTask = async (id, name, status) => {
+const updateStatusTask = async (id, status) => {
 
   if (status === "allow") {
         const [updatedCount, updatedRows] = await Task.update(
