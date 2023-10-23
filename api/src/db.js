@@ -44,7 +44,7 @@ const { User, Task  } = sequelize.models;
 
 // Relaciones
 User.hasMany(Task);
-Task.hasOne(User);
+Task.belongsTo(User);
 
 module.exports = {
   ...sequelize.models,
