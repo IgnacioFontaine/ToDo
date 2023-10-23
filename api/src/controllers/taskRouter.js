@@ -60,23 +60,28 @@ const updateTask = async ( id, name, status) => {
     return { message: "updated information" };
 };
 
-const updateStatusTask = async (id, status) => {
+const updateStatusTask = async (id) => {
+
+  const task__modif = await Task.findOne({ where: { id } })
+
+  if (!task__modif) {
+    throw new Error('The id was not found or it is incorrect');
+  }
   
-  if (status === "ON") {
+  if (task__modif.status === "ON") {
         const [updatedCount, updatedRows] = await Task.update(
             { status: "OFF" },
             { where: { id } }
         );
           
-  } else if (status === "OFF") {
+  }
+  if (task__modif.status === "OFF") {
         const [updatedCount, updatedRows] = await Task.update(
             { status: "ON" },
             { where: { id } }
         );
           
-  } else {
-    throw new Error('The id was not found or it is incorrect');
-        }
+  } 
 
     return { message: "updated information" };
 };
