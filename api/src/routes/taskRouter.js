@@ -21,7 +21,8 @@ router.get("/", async (req, res) => {
         
     }
     if (!user) {
-      return res.status(200).send(`Soy todas las tareas`)
+      tareas = await getAllTask()
+      return res.status(200).json(tareas)
     }
   } catch (error) {
     return res.status(400).json({ error: error.message });
