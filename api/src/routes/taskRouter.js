@@ -13,11 +13,14 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { name } = req.body;
-    if (name) {
-        return res.status(200).send(`Soy la tarea de nombre ${name}`)
+    const { user } = req.params;
+    if (user) {
+      tareas_user = await getTasksByUser()
+      
+      return res.status(200).json(tareas_user);
+        
     }
-    if (!name) {
+    if (!user) {
       return res.status(200).send(`Soy todas las tareas`)
     }
   } catch (error) {
@@ -36,7 +39,7 @@ router.post("/", async (req, res) => {
     );
 
     //Return
-    res.status(200).json(newTask);
+    return res.status(200).json(newTask);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
