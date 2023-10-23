@@ -2,7 +2,7 @@ const { Task } = require("../db")
 
 const createTaskDB = async (
   name,
-  status
+  status,
 ) => {
   try {
     let newTask = Task.create({

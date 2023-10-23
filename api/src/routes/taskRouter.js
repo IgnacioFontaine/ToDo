@@ -7,7 +7,7 @@ const {
     deleteTask,
     updateStatusTask,
     updateTask
-} = require("../controllers/taskRouter");
+} = require("../controllers/taskController");
 
 const router = Router();
 
