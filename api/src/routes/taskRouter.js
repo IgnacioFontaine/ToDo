@@ -62,12 +62,11 @@ router.put("/modify/:id", async (req, res) => {
 
 router.put("/modifyStatus/:id", async (req, res) => {
   const { id } = req.params;
-  
-    const {  status  } = req.body;
+
     try {
         if (!id) return res.status(404).json({ error: 'Id not found' });
         
-        const putStatusTask = await updateStatusTask(id, status);
+        const putStatusTask = await updateStatusTask(id);
         return res.status(200).json(putStatusTask);
     } catch (error) {
         return res.status(500).json({ error: error.message });
