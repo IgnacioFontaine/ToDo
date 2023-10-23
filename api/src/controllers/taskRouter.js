@@ -61,7 +61,7 @@ const updateTask = async ( id, name, status) => {
 };
 
 const updateStatusTask = async (id, status) => {
-
+  
   if (status === "ON") {
         const [updatedCount, updatedRows] = await Task.update(
             { status: "OFF" },

@@ -9,9 +9,11 @@ const {
     updateTask
 } = require("../controllers/taskRouter");
 
+const router = Router();
+
 router.get("/", async (req, res) => {
   try {
-    const { name } = req.query;
+    const { name } = req.body;
     if (name) {
         return res.status(200).send(`Soy la tarea de nombre ${name}`)
     }
@@ -78,3 +80,5 @@ router.delete("/eliminar/:id",async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 })
+
+module.exports = router;

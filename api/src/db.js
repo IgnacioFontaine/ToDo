@@ -4,11 +4,12 @@ const fs = require("fs");
 const path = require("path");
 
 //Variables de Entorno
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const {DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME} = process.env
 
 //Conección
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/todo`,
+  // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  `postgres://postgres:Admin@localhost/todo`,
   {
     logging: false,
     native: false,
