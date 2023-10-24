@@ -1,5 +1,8 @@
 //Config initialState
 const initialState = {
+  tasks: [],
+  on_task_: [],
+  off_task_:[],
   
 };
 
