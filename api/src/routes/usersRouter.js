@@ -3,6 +3,7 @@ const { Router } = require("express");
 const {
   getUserByName,
   createUserDB,
+  getUsers
 } = require("../controllers/userController");
 
 const router = Router();
@@ -12,8 +13,15 @@ router.get("/", async (req, res) => {
   try {
     const { name } = req.query;
     let user;
+    if (name) {
+      user = await getUserByName(name);
+    }
+
+    if (!name) {
+      user = await getUsers()
+    }
     //Si no se manda un nombre, buscar todos
-    user = await getUserByName(name);
+    
     if (user === null) {
       return res.status(200).send("User not found");
     }

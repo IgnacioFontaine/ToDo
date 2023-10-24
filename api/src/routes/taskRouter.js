@@ -9,6 +9,8 @@ const {
     updateTask
 } = require("../controllers/taskController");
 
+const { User } = require("../db")
+
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -31,13 +33,21 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, status } = req.body;
+    const { name, status, user } = req.body;
 
     //Create
     const newTask = await createTaskDB(
       name,
       status
     );
+
+    let userDB = await User.findOne({
+      where: {
+        name: user,
+      },
+    })
+
+    newTask.setUser(userDB)
 
     //Return
     return res.status(200).json(newTask);
