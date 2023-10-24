@@ -2,6 +2,8 @@ import './App.css';
 import { Route, Routes } from "react-router-dom";
 import Home from './Components/Home/home';
 import Login from './Components/Login/login';
+import CreateUser from './Components/CreateUser/createUser';
+import Error from './Components/Error/error';
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
 
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<CreateUser />} />
+        <Route path="*" element={<Error />} />
 
       </Routes>
     </div>
