@@ -83,7 +83,7 @@ router.put("/modifyStatus/:id", async (req, res) => {
     }
 })
 
-router.delete("/eliminar/:id",async (req, res) => {
+router.delete("/delete/:id",async (req, res) => {
   const { id } = req.params;
   try {
     if (!id) return res.status(404).json({ error: "Invalid id" });
