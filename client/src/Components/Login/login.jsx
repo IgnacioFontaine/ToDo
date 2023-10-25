@@ -1,23 +1,71 @@
-import {Box,Typography } from "@mui/material"
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {Box,Typography, TextField, Button } from "@mui/material"
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
+const EMPTY_FORM = {
+  email: "",
+  contraseña:""
+};
 
 const Login = () => {
-  const dispatch = useDispatch()
+  const [formData, setFormData] = useState(EMPTY_FORM);
+  const [errorResponse, setErrorResponse] = useState("")
+  const [estaAutenticado,setEstaAutenticado] = useState(false)
 
-  useEffect(() => {
 
-  }, [dispatch]);
-
+  const handleChange = (event) =>
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   
+  async function handleSubmit(event) {
+    event.preventDefault();
 
+  }
+  
   return (
-    <Box sx={{ height: "150vh", boxShadow: 2 }}>
-      <Box>
-        <Typography>Soy el Login</Typography>
-        
-      </Box> 
+    <Box sx={{ display: "flex", flexDirection:"column", alignItems:"center"}}>
+      <Box sx={{ display: "flex", flexDirection: "column", m:2}}>
+        <Typography variant="h2" >Login</Typography>
+      </Box>
+      <Box sx={{display: "flex", flexDirection:"column"}}>
+        <form onSubmit={handleSubmit}>
+        <Box >
+        </Box>
+        <Box padding={1}>
+          <TextField
+                label="Email . . ."
+                variant="outlined"
+                name="email"
+                autoComplete= "none"
+                value={formData.email}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+              />
+
+              <TextField
+                label="Contraseña"
+                type="password"
+                variant="outlined"
+                name="meaning"
+                autoComplete="off"
+                value={formData.meaning}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+
+              />
+        </Box>
+        <Box>
+          <Button
+            type="submit"
+            sx={{
+            color: "black",
+            bgcolor: "white",
+            }}
+          >Ingresar</Button>
+        </Box>
+      </form>
+      </Box>
     </Box>
   );
 };
