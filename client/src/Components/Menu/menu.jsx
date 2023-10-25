@@ -40,8 +40,9 @@ export default function FadeMenu() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-          <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
-          <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
+          <MenuItem >Profile</MenuItem>
+          <MenuItem >UserName</MenuItem>
+          <MenuItem onClick={() => navigate("/login")}>Logout</MenuItem>
         
       </Menu>
     </div>
