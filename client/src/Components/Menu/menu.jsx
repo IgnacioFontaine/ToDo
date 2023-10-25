@@ -1,25 +1,49 @@
-import {Box,Typography } from "@mui/material"
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+import { useNavigate } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
 
+export default function FadeMenu() {
 
-const Menu = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-
-  }, [dispatch]);
-
+  const navigate = useNavigate()
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   
-
-  return (
-    <Box sx={{ height: "150vh", boxShadow: 2 }}>
-      <Box>
-        <Typography>Soy el Menu</Typography>
+  
+    return (
+      <div>
+      <Button
+        id="fade-button"
+        aria-controls={open ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <MenuIcon />
+      </Button>
+      <Menu
+        id="fade-menu"
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
+          <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
+          <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
         
-      </Box> 
-    </Box>
-  );
-};
-
-export default Menu;
+      </Menu>
+    </div>
+    )
+  }
