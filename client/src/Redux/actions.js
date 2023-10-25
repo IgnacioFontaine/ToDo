@@ -1,6 +1,11 @@
 import axios from "axios";
 import ACTION_TYPES from './actionTypes'
 
+export const createUser = (user) => async (dispatch) => {
+  const newUser = await axios.post("http://localhost:3001/user", user);
+  return dispatch({ type: ACTION_TYPES.CREATE_USER, payload: newUser.data });
+};
+
 export const createTask = (task) => async (dispatch) => {
   const newtask = await axios.post("http://localhost:3001/task", task);
   return dispatch({ type: ACTION_TYPES.CREATE_TASK, payload: newtask.data });
