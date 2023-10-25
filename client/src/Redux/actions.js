@@ -38,6 +38,25 @@ export const deleteTask = (id) => {
   };
 };
 
+export const modifyTask = (id, updatedFields) => {
+  return async (dispatch) => {
+    try {
+
+      await axios.put(`http://localhost:3001/task/modify/${id}`, updatedFields);
+
+      dispatch({
+        type: ACTION_TYPES.MODIFY_TASK_SUCCESS,
+        payload: updatedFields
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_TYPES.MODIFY_PTASK_FAILURE,
+        payload: error.message
+      });
+    }
+  };
+};
+
 export const modifyStatusTask = (id) => {
   return async (dispatch) => {
     try {
