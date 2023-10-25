@@ -23,3 +23,22 @@ export const deleteTask = (id) => {
     }
   };
 };
+
+export const modifyStatusTask = (id) => {
+  return async (dispatch) => {
+    try {
+
+      await axios.put(`http://localhost:3001/task/modifyStatus/${id}`);
+
+      dispatch({
+        type: ACTION_TYPES.MODIFY_STATUS_TASK_SUCCESS,
+        payload: id
+      });
+    } catch (error) {
+      dispatch({
+        type: ACTION_TYPES.MODIFY_STATUS_TASK_FAILURE,
+        payload: error.message
+      });
+    }
+  };
+};
