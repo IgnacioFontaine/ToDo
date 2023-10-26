@@ -50,7 +50,7 @@ export const modifyTask = (id, updatedFields) => {
       });
     } catch (error) {
       dispatch({
-        type: ACTION_TYPES.MODIFY_PTASK_FAILURE,
+        type: ACTION_TYPES.MODIFY_TASK_FAILURE,
         payload: error.message
       });
     }
