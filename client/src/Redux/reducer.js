@@ -61,6 +61,19 @@ const reducer = (state = initialState, action) => {
       return state;
     
     
+    case ACTION_TYPES.CREATE_TASK:
+      if (action.payload.status === 200) {
+        return {
+          ...state,
+          errormsg: {},
+        };
+      } else {
+        return {
+          ...state,
+          errormsg: action.payload,
+        };
+      }
+    
     case ACTION_TYPES.ERROR:
       return {
         ...state,
