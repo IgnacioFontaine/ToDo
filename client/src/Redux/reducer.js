@@ -34,6 +34,20 @@ const reducer = (state = initialState, action) => {
     case ACTION_TYPES.MODIFY_TASK_FAILURE:
       return state;
     
+    case ACTION_TYPES.MODIFY_STATUS_TASK_SUCCESS:
+      state.all_tasks.forEach((task)=>{
+                if(task.id === action.payload.id){
+                    task.status = action.payload.status
+                }
+            })
+        return {
+            ...state,
+            all_tasks: [...state.all_tasks]
+      };
+    
+    case ACTION_TYPES.MODIFY_STATUS_TASK_FAILURE:
+      return state;
+    
     
     case ACTION_TYPES.ERROR:
       return {
