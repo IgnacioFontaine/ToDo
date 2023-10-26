@@ -75,3 +75,14 @@ export const modifyStatusTask = (id) => {
     }
   };
 };
+
+export const getTaskStatusOn = () => async (dispatch) => {
+  try {
+    let result = await axios.get("http://localhost:3001/task");
+    const task_status = result.filter((task)=> task.status === "ON")
+    return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_ONN, payload: task_status });
+  } catch (error) {
+    return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
+  }
+};
+
