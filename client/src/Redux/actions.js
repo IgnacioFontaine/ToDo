@@ -76,23 +76,23 @@ export const modifyStatusTask = (id) => {
   };
 };
 
-// export const getTaskStatusOn = () => async (dispatch) => {
-//   try {
-//     let result = await axios.get("http://localhost:3001/task/status");
-//     const task_status_on = result.data.filter((task)=> task.status === "ON")
-//     return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_ON, payload: task_status_on });
-//   } catch (error) {
-//     return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
-//   }
-// };
+export const getTaskStatusOn = () => async (dispatch) => {
+  try {
+    let result = await axios.get("http://localhost:3001/task/status/on");
+    
+    return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_ON, payload: result.data });
+  } catch (error) {
+    return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
+  }
+};
 
-// export const getTaskStatusOff = () => async (dispatch) => {
-//   try {
-//     let result = await axios.get("http://localhost:3001/task");
-//     const task_status_off = result.data.filter((task)=> task.status === "OFF")
-//     return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_OFF, payload: task_status_off });
-//   } catch (error) {
-//     return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
-//   }
-// };
+export const getTaskStatusOff = () => async (dispatch) => {
+  try {
+    let result = await axios.get("http://localhost:3001/task/status/off");
+    
+    return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_OFF, payload: result.data });
+  } catch (error) {
+    return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
+  }
+};
 
