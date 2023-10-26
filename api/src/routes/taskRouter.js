@@ -6,7 +6,8 @@ const {
     getTasksByUser,
     deleteTask,
     updateStatusTask,
-    updateTask
+    updateTask,
+    getTasksByStatus
 } = require("../controllers/taskController");
 
 const { User } = require("../db")
@@ -26,6 +27,28 @@ router.get("/", async (req, res) => {
       tareas = await getAllTask()
       return res.status(200).json(tareas)
     }
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+});
+
+router.get("/status/on", async (req, res) => {
+  try {
+    const task_by_status = await getTasksByStatus("ON");
+
+    return res.status(200).json(task_by_status);
+
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+});
+
+router.get("/status/off", async (req, res) => {
+  try {
+    const task_by_status = await getTasksByStatus("OFF");
+
+    return res.status(200).json(task_by_status);
+
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

@@ -37,6 +37,19 @@ const getTasksByUser = async (id) => {
   }
 };
 
+const getTasksByStatus = async (status) => {
+  try {
+    let tasks = await Task.findAll({
+      where: {
+        status: status,
+      },
+    });
+    return tasks;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const deleteTask = async (id) => {
 
     const findTask = await Task.findOne({ where: { id } });
@@ -93,5 +106,6 @@ module.exports = {
   getTasksByUser,
   deleteTask,
   updateStatusTask,
-  updateTask
+  updateTask,
+  getTasksByStatus
 };
