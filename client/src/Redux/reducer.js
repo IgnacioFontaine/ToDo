@@ -73,6 +73,14 @@ const reducer = (state = initialState, action) => {
           errormsg: action.payload,
         };
       }
+
+    case ACTION_TYPES.DELETE_TASK_SUCCESS:
+      return {
+        ...state, all_tasks: state.all_tasks.filter(all_tasks => all_tasks.id !== action.payload)
+      };
+    
+    case ACTION_TYPES.DELETE_TASK_FAILURE:
+      return state;
     
     case ACTION_TYPES.ERROR:
       return {
