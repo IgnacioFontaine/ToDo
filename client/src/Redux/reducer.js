@@ -29,7 +29,17 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             all_tasks: [...state.all_tasks]
-        };
+      };
+    
+    case ACTION_TYPES.MODIFY_TASK_FAILURE:
+      return state;
+    
+    
+    case ACTION_TYPES.ERROR:
+      return {
+        ...state,
+        error: true,
+      };
     
     default:
       return {
