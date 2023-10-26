@@ -19,6 +19,18 @@ const reducer = (state = initialState, action) => {
         all_tasks: action.payload,
       };
     
+    case ACTION_TYPES.GET_TASKS_STATUS_ON:
+      return {
+        ...state,
+        on_task: action.payload,
+      };
+    
+    case ACTION_TYPES.GET_TASKS_STATUS_OFF:
+      return {
+        ...state,
+        off_task: action.payload,
+      };
+    
     case ACTION_TYPES.MODIFY_TASK_SUCCESS:
       state.all_tasks.forEach((task)=>{
                 if(task.id === action.payload.id){
