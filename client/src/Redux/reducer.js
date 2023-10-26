@@ -1,3 +1,5 @@
+import ACTION_TYPES from './actionTypes'
+
 //Config initialState
 const initialState = {
   users:[],
@@ -11,6 +13,11 @@ const initialState = {
 //Config reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ACTION_TYPES.GET_ALL_TASKS:
+      return {
+        ...state,
+        allTasks: action.payload,
+      };
     
     default:
       return {
