@@ -1,4 +1,4 @@
-import { Box, Typography, TableHead } from "@mui/material"
+import { Box, Typography, TableHead, Switch, Checkbox } from "@mui/material"
 import {
   Icon,
   Paper,
@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import {  getTaskStatusOn,getTaskStatusOff, deleteTask, modifyStatusTask, modifyTask  } from "../../Redux/actions"
 
 
@@ -28,9 +30,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getTaskStatusOn());
-    dispatch(getTaskStatusOff()); 
+    dispatch(getTaskStatusOff());
+    
 
-  }, [dispatch]);
+  }, []);
 
   const [formData, setFormData] = useState(EMPTY_FORM);
 
@@ -48,6 +51,12 @@ const Home = () => {
     setFormData(EMPTY_FORM);
   };
 
+  const handleUpdateStatus = (id) => {
+    dispatch(modifyStatusTask(id));
+
+  }
+  
+
   const Tasks_on = useSelector((state) => state?.on_task)
   const Tasks_off = useSelector((state)=>state?.off_task)
 
@@ -59,7 +68,7 @@ const Home = () => {
       <Box>
         <CreateTask />
       </Box>
-      <Box>
+      <Box sx={{display:"flex"}}>
         <Box>
           <Box>
         <TableContainer
@@ -80,11 +89,14 @@ const Home = () => {
                     <Box>{row?.name}</Box>
                     <Box>{row?.status}</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer" }}>
+                      <Box sx={{ cursor: "pointer", display:"flex" }}>
                         <Icon>
                           <DeleteForeverRoundedIcon
                             onClick={() => handleDelete(row?.id)}
                           ></DeleteForeverRoundedIcon>
+                        </Icon>
+                        <Icon>
+                          <CheckBoxOutlineBlankIcon onClick={() => handleUpdateStatus(row?.id)} />
                         </Icon>
                       </Box>
                     </Box>
@@ -116,11 +128,14 @@ const Home = () => {
                     <Box>{row?.name}</Box>
                     <Box>{row?.status}</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer" }}>
+                      <Box sx={{ cursor: "pointer", display:"flex" }}>
                         <Icon>
                           <DeleteForeverRoundedIcon
                             onClick={() => handleDelete(row?.id)}
                           ></DeleteForeverRoundedIcon>
+                        </Icon>
+                        <Icon>
+                          <CheckBoxIcon onClick={() => handleUpdateStatus(row?.id)} />
                         </Icon>
                       </Box>
                     </Box>
