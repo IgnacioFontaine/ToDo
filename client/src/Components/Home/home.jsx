@@ -1,4 +1,4 @@
-import { Box, Typography, TableHead, Switch, Checkbox } from "@mui/material"
+import { Box, Typography, TableHead } from "@mui/material"
 import {
   Icon,
   Paper,
@@ -9,20 +9,14 @@ import {
   TableRow,
 } from "@mui/material";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import {  getTaskStatusOn,getTaskStatusOff, deleteTask, modifyStatusTask, modifyTask  } from "../../Redux/actions"
+import {  getAllTask ,getTaskStatusOn,getTaskStatusOff, deleteTask, modifyStatusTask } from "../../Redux/actions"
 
-
-const EMPTY_FORM = {
-  name:"",
-  status: "ON"
-};
 
 const Home = () => {
 
@@ -31,24 +25,16 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTaskStatusOn());
     dispatch(getTaskStatusOff());
-    
+    dispatch(getAllTask());
 
-  }, []);
+  }, [dispatch]);
 
-  const [formData, setFormData] = useState(EMPTY_FORM);
+  const Tasks_on = useSelector((state) => state?.on_task)
+  const Tasks_off = useSelector((state)=>state?.off_task)
 
-  //   const handleUpdate = (id, name, status) => {
-  //   setFormData({
-  //     id: id,
-  //     name: name,
-  //     status:status
-  //   });
-  //   setButton({ value: "Modificar" });
-  // };
 
   const handleDelete = (id) => {
     dispatch(deleteTask(id));
-    setFormData(EMPTY_FORM);
   };
 
   const handleUpdateStatus = (id) => {
@@ -57,18 +43,17 @@ const Home = () => {
   }
   
 
-  const Tasks_on = useSelector((state) => state?.on_task)
-  const Tasks_off = useSelector((state)=>state?.off_task)
+  
 
   return (
-    <Box sx={{ height: "150vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5, }}>
+    <Box sx={{ height: "150vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5 }}>
       <Box>
         <Menu />
       </Box>
       <Box>
         <CreateTask />
       </Box>
-      <Box sx={{display:"flex"}}>
+      <Box sx={{display:"flex", m:2}}>
         <Box>
           <Box>
         <TableContainer
@@ -77,8 +62,8 @@ const Home = () => {
           component={Paper}
         >
             <Table >
-              <TableHead sx={{height: "5vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" >Task:</Typography>
+              <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
+                <Typography variant="h4" >Task On:</Typography>
               </TableHead>
             <TableBody style={{}}>
               {Tasks_on?.map((row) => (
@@ -116,8 +101,8 @@ const Home = () => {
           component={Paper}
         >
             <Table >
-              <TableHead sx={{height: "5vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" >Task:</Typography>
+              <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
+                <Typography variant="h4" >Task Off:</Typography>
               </TableHead>
             <TableBody style={{}}>
               {Tasks_off?.map((row) => (
@@ -128,15 +113,19 @@ const Home = () => {
                     <Box>{row?.name}</Box>
                     <Box>{row?.status}</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer", display:"flex" }}>
-                        <Icon>
+                      <Box sx={{ cursor: "pointer", display: "flex" }}>
+                        <Box>
+                          <Icon>
                           <DeleteForeverRoundedIcon
                             onClick={() => handleDelete(row?.id)}
                           ></DeleteForeverRoundedIcon>
                         </Icon>
-                        <Icon>
+                        </Box>
+                        <Box>
+                          <Icon>
                           <CheckBoxIcon onClick={() => handleUpdateStatus(row?.id)} />
                         </Icon>
+                        </Box>
                       </Box>
                     </Box>
                   </TableCell>
