@@ -25,7 +25,7 @@ const CreateTask = () => {
   };
 
   return (
-    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"28vw"}}>
+    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"32vw"}}>
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", gap: 3, alignItems: "center" }}>
           <Box ml={2}>

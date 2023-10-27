@@ -100,7 +100,7 @@ const Home = () => {
         <Box>
           <Box>
         <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"transparent", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
+          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"#FD9696", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
           style={{backgroundImage: 'none'}}
           component={Paper}
         >
