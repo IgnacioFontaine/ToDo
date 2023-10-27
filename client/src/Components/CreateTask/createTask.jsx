@@ -4,7 +4,8 @@ import { Navigate } from "react-router-dom";
 
 const EMPTY_FORM = {
   name:"",
-  status:"ON"
+  status: "ON",
+  grupo:"User1"
 };
 
 const CreateTask = () => {
