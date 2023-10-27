@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Box } from "@mui/material"
 
 export default function FadeMenu() {
 
@@ -20,7 +21,7 @@ export default function FadeMenu() {
   
   
     return (
-      <div>
+      <Box sx={{display:"flex", alignContent:"flex-start"}}>
       <Button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
@@ -45,6 +46,6 @@ export default function FadeMenu() {
           <MenuItem onClick={() => navigate("/login")}>Logout</MenuItem>
         
       </Menu>
-    </div>
+    </Box>
     )
   }

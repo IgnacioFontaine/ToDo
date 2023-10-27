@@ -52,17 +52,17 @@ const Home = () => {
       <Box>
         <CreateTask />
       </Box>
-      <Box sx={{display:"flex", m:2}}>
+      <Box sx={{display:"flex", m:3}}>
         <Box>
           <Box>
         <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"#B3FFB4", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
+          sx={{ height: "60vh",width:"28vw", overflow: "auto", p:2, backgroundColor:"#B3FFB4", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark", boxShadow:2}}
           style={{backgroundImage: 'none'}}
           component={Paper}
         >
             <Table >
               <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" >Task On:</Typography>
+                <Typography variant="h4" sx={{m:1}} >Task On:</Typography>
               </TableHead>
             <TableBody style={{}}>
               {Tasks_on?.map((row) => (
@@ -100,13 +100,13 @@ const Home = () => {
         <Box>
           <Box>
         <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"#FD9696", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
+          sx={{ height: "60vh",width:"28vw", overflow: "auto",  p:2 , backgroundColor:"#FD9696", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark", boxShadow:2}}
           style={{backgroundImage: 'none'}}
           component={Paper}
         >
             <Table >
               <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" >Task Off:</Typography>
+                <Typography variant="h4" sx={{m:1}} >Task Off:</Typography>
               </TableHead>
             <TableBody style={{}} >
               {Tasks_off?.map((row) => (
