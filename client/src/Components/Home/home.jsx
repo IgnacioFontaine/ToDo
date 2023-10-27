@@ -30,7 +30,8 @@ const Home = () => {
   }, [dispatch]);
 
   const Tasks_on = useSelector((state) => state?.on_task)
-  const Tasks_off = useSelector((state)=>state?.off_task)
+  const Tasks_off = useSelector((state) => state?.off_task)
+
 
 
   const handleDelete = (id) => {
@@ -41,13 +42,11 @@ const Home = () => {
     dispatch(modifyStatusTask(id));
 
   }
-  
 
-  
 
   return (
-    <Box sx={{ height: "150vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5 }}>
-      <Box>
+    <Box sx={{ height: "90vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5 }}>
+      <Box  >
         <Menu />
       </Box>
       <Box>
@@ -57,7 +56,7 @@ const Home = () => {
         <Box>
           <Box>
         <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"transparent", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
+          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"#B3FFB4", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
           style={{backgroundImage: 'none'}}
           component={Paper}
         >
@@ -74,15 +73,20 @@ const Home = () => {
                     <Box>{row?.name}</Box>
                     <Box>{row?.status}</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer", display:"flex" }}>
-                        <Icon>
+                      <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
+                        <Box>
+                          <Icon>
+                          <CheckBoxOutlineBlankIcon onClick={() => handleUpdateStatus(row?.id)} ></CheckBoxOutlineBlankIcon> 
+                        </Icon>
+                        </Box>
+
+                        <Box>
+                          <Icon>
                           <DeleteForeverRoundedIcon
                             onClick={() => handleDelete(row?.id)}
                           ></DeleteForeverRoundedIcon>
                         </Icon>
-                        <Icon>
-                          <CheckBoxOutlineBlankIcon onClick={() => handleUpdateStatus(row?.id)} />
-                        </Icon>
+                        </Box>
                       </Box>
                     </Box>
                   </TableCell>
@@ -104,7 +108,7 @@ const Home = () => {
               <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
                 <Typography variant="h4" >Task Off:</Typography>
               </TableHead>
-            <TableBody style={{}}>
+            <TableBody style={{}} >
               {Tasks_off?.map((row) => (
                 <TableRow key={row?.id}>
                   <TableCell
@@ -113,7 +117,14 @@ const Home = () => {
                     <Box>{row?.name}</Box>
                     <Box>{row?.status}</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer", display: "flex" }}>
+                      <Box sx={{ cursor: "pointer", display: "flex", gap:1 }}>
+                        
+                        <Box>
+                          <Icon>
+                          <CheckBoxIcon onClick={() => handleUpdateStatus(row?.id)} ></CheckBoxIcon> 
+                        </Icon>
+                        </Box>
+
                         <Box>
                           <Icon>
                           <DeleteForeverRoundedIcon
@@ -121,11 +132,7 @@ const Home = () => {
                           ></DeleteForeverRoundedIcon>
                         </Icon>
                         </Box>
-                        <Box>
-                          <Icon>
-                          <CheckBoxIcon onClick={() => handleUpdateStatus(row?.id)} />
-                        </Icon>
-                        </Box>
+
                       </Box>
                     </Box>
                   </TableCell>

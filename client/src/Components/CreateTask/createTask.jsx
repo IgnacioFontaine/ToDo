@@ -6,6 +6,7 @@ import { createTask } from "../../Redux/actions"
 const EMPTY_FORM = {
   name:"",
   status: "ON",
+  user:"User1"
 };
 
 const CreateTask = () => {
@@ -19,7 +20,7 @@ const CreateTask = () => {
   const handleSubmit = (event) => {
      event.preventDefault();
      dispatch(createTask(formData))
-     setFormData(EMPTY_FORM);
+      setFormData(EMPTY_FORM);
 
   };
 
