@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, TableHead } from "@mui/material"
 import {
   Icon,
   Paper,
@@ -34,15 +34,6 @@ const Home = () => {
 
   const [formData, setFormData] = useState(EMPTY_FORM);
 
-  
-  
-   const handleSubmit = (event) => {
-     event.preventDefault();
-     dispatch(createTask(formData))
-     setFormData(EMPTY_FORM);
-
-  };
-
   //   const handleUpdate = (id, name, grupo) => {
   //   setFormData({
   //     id: id,
@@ -57,10 +48,10 @@ const Home = () => {
     setFormData(EMPTY_FORM);
   };
 
-  const Task = useSelector((state)=>state?.all_tasks)
+  const Tasks = useSelector((state)=>state?.all_tasks)
 
   return (
-    <Box sx={{ height: "150vh", boxShadow: 2 }}>
+    <Box sx={{ height: "150vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5, }}>
       <Box>
         <Menu />
       </Box>
@@ -75,7 +66,7 @@ const Home = () => {
         >
             <Table >
               <TableHead sx={{height: "5vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" >Patrulleros:</Typography>
+                <Typography variant="h4" >Task:</Typography>
               </TableHead>
             <TableBody style={{}}>
               {Tasks?.map((row) => (
@@ -84,7 +75,7 @@ const Home = () => {
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <Box>{row?.name}</Box>
-                    <Box>{row?.grupo}</Box>
+                    <Box>{row?.status}</Box>
                     <Box sx={{ display: "flex" }}>
                       <Box sx={{ cursor: "pointer" }}>
                         <Icon>

@@ -1,6 +1,8 @@
 import {Box,Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createTask, deleteTask  } from "../../Redux/actions"
 
 const EMPTY_FORM = {
   name:"",
@@ -9,17 +11,19 @@ const EMPTY_FORM = {
 };
 
 const CreateTask = () => {
-
+   const dispatch = useDispatch()
   const [formData, setFormData] = useState(EMPTY_FORM);
 
 
   const handleChange = (event) =>
     setFormData({ ...formData, [event.target.name]: event.target.value });
   
-  async function handleSubmit(event) {
-    event.preventDefault();
+  const handleSubmit = (event) => {
+     event.preventDefault();
+     dispatch(createTask(formData))
+     setFormData(EMPTY_FORM);
 
-  }
+  };
 
   return (
     <Box>
