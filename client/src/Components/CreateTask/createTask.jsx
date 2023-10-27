@@ -25,9 +25,9 @@ const CreateTask = () => {
   };
 
   return (
-    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"32vw"}}>
+    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"35vw"}}>
       <form onSubmit={handleSubmit}>
-        <Box sx={{ display: "flex", gap: 3, alignItems: "center" }}>
+        <Box sx={{ display: "flex", gap: 5, alignItems: "center", textAlign:"center", m:5 }}>
           <Box ml={2}>
             <Typography variant="h6">New Task: </Typography>
           </Box>
@@ -50,6 +50,7 @@ const CreateTask = () => {
             sx={{
             color: "black",
             bgcolor: "white",
+            
             }}
           >Create</Button>
         </Box>

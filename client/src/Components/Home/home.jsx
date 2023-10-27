@@ -45,7 +45,7 @@ const Home = () => {
 
 
   return (
-    <Box sx={{ height: "90vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5 }}>
+    <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5, bgcolor:"#A5A5A5" }}>
       <Box  >
         <Menu />
       </Box>
