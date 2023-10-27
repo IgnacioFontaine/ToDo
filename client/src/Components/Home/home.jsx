@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { createTask, getAllTask, deleteTask, modifyStatusTask, modifyTask  } from "../../Redux/actions"
+import {  getTaskStatusOn,getTaskStatusOff, deleteTask, modifyStatusTask, modifyTask  } from "../../Redux/actions"
 
 
 const EMPTY_FORM = {
@@ -27,18 +27,18 @@ const Home = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getAllTask()) 
+    dispatch(getTaskStatusOn());
+    dispatch(getTaskStatusOff()); 
 
   }, [dispatch]);
 
-
   const [formData, setFormData] = useState(EMPTY_FORM);
 
-  //   const handleUpdate = (id, name, grupo) => {
+  //   const handleUpdate = (id, name, status) => {
   //   setFormData({
   //     id: id,
   //     name: name,
-  //     grupo:grupo
+  //     status:status
   //   });
   //   setButton({ value: "Modificar" });
   // };
@@ -48,7 +48,8 @@ const Home = () => {
     setFormData(EMPTY_FORM);
   };
 
-  const Tasks = useSelector((state)=>state?.all_tasks)
+  const Tasks_on = useSelector((state) => state?.on_task)
+  const Tasks_off = useSelector((state)=>state?.off_task)
 
   return (
     <Box sx={{ height: "150vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5, }}>
@@ -59,8 +60,10 @@ const Home = () => {
         <CreateTask />
       </Box>
       <Box>
+        <Box>
+          <Box>
         <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1, backgroundColor:"transparent", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
+          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"transparent", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
           style={{backgroundImage: 'none'}}
           component={Paper}
         >
@@ -69,7 +72,7 @@ const Home = () => {
                 <Typography variant="h4" >Task:</Typography>
               </TableHead>
             <TableBody style={{}}>
-              {Tasks?.map((row) => (
+              {Tasks_on?.map((row) => (
                 <TableRow key={row?.id}>
                   <TableCell
                     sx={{ display: "flex", justifyContent: "space-between" }}
@@ -84,18 +87,40 @@ const Home = () => {
                           ></DeleteForeverRoundedIcon>
                         </Icon>
                       </Box>
-                      <Box>
-                        <Icon sx={{cursor:'pointer'}}>
-                          <EditRoundedIcon
-                            // onClick={() => 
-                            //   handleUpdate(
-                            //     row?.id,
-                            //     row?.name,
-                            //     row?.cuotas,
-                            //     row?.grupo
-                            //   )
-                            // }
-                          ></EditRoundedIcon>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+        </Box>
+        <Box>
+          <Box>
+        <TableContainer
+          sx={{ height: "60vh",width:"28vw", overflow: "auto", pb: 1,pt:1, backgroundColor:"transparent", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark"}}
+          style={{backgroundImage: 'none'}}
+          component={Paper}
+        >
+            <Table >
+              <TableHead sx={{height: "5vh", overflow: "auto", color:"black"}}>
+                <Typography variant="h4" >Task:</Typography>
+              </TableHead>
+            <TableBody style={{}}>
+              {Tasks_off?.map((row) => (
+                <TableRow key={row?.id}>
+                  <TableCell
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Box>{row?.name}</Box>
+                    <Box>{row?.status}</Box>
+                    <Box sx={{ display: "flex" }}>
+                      <Box sx={{ cursor: "pointer" }}>
+                        <Icon>
+                          <DeleteForeverRoundedIcon
+                            onClick={() => handleDelete(row?.id)}
+                          ></DeleteForeverRoundedIcon>
                         </Icon>
                       </Box>
                     </Box>
@@ -105,6 +130,8 @@ const Home = () => {
             </TableBody>
           </Table>
         </TableContainer>
+      </Box>
+        </Box>
       </Box>
     </Box>
   );

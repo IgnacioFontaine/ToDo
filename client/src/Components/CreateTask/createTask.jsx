@@ -1,13 +1,11 @@
 import {Box,Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createTask, deleteTask  } from "../../Redux/actions"
+import { useDispatch } from "react-redux";
+import { createTask } from "../../Redux/actions"
 
 const EMPTY_FORM = {
   name:"",
   status: "ON",
-  grupo:"User1"
 };
 
 const CreateTask = () => {
@@ -26,9 +24,12 @@ const CreateTask = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"28vw"}}>
       <form onSubmit={handleSubmit}>
-        <Box >
+        <Box sx={{ display: "flex", gap: 3, alignItems: "center" }}>
+          <Box ml={2}>
+            <Typography variant="h6">New Task: </Typography>
+          </Box>
           <Box padding={1}>
             <TextField
                 label="Name"
@@ -41,9 +42,8 @@ const CreateTask = () => {
                 margin="normal"
 
             />
-            </Box>
-        </Box>
-        <Box>
+          </Box>
+          <Box >
           <Button
             type="submit"
             sx={{
@@ -51,6 +51,7 @@ const CreateTask = () => {
             bgcolor: "white",
             }}
           >Create</Button>
+        </Box>
         </Box>
       </form>
     </Box>        
