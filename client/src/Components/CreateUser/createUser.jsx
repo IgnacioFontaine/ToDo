@@ -23,16 +23,17 @@ const Login = () => {
   }
   
   return (
-    <Box sx={{ display: "flex", flexDirection:"column", alignItems:"center"}}>
-      <Box sx={{ display: "flex", flexDirection: "column", m:2}}>
-        <Typography variant="h2" >Register</Typography>
-      </Box>
-      <Box sx={{display: "flex", flexDirection:"column"}}>
-        <form onSubmit={handleSubmit}>
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", bgcolor: "#A5A5A5", height: "100vh", width: "100vw", alignContent: "center" }}>
+      <Box sx={{ alignContent: "center", alignItems: "center", boxShadow: 2, m: 20, p: 5, bgcolor: "#E6E6E6", borderRadius: 5 }}>
         <Box >
+          <Typography variant="h2" >Register</Typography>
         </Box>
-          <Box padding={1}>
-            <TextField
+        <Box sx={{display: "flex", flexDirection:"column"}}>
+          <form onSubmit={handleSubmit}>
+          <Box >
+          </Box>
+            <Box padding={1}>
+              <TextField
                 label="Name"
                 variant="outlined"
                 name="name"
@@ -42,9 +43,9 @@ const Login = () => {
                 fullWidth
                 margin="normal"
 
-              />
+                />
             
-          <TextField
+            <TextField
                 label="Email . . ."
                 variant="outlined"
                 name="email"
@@ -53,7 +54,7 @@ const Login = () => {
                 onChange={handleChange}
                 fullWidth
                 margin="normal"
-              />
+                />
 
               <TextField
                 label="Password"
@@ -67,18 +68,19 @@ const Login = () => {
                 margin="normal"
 
               />
+          </Box>
+          <Box>
+            <Button
+              type="submit"
+              sx={{
+              color: "black",
+              bgcolor: "white",
+              }}
+            >Create</Button>
+          </Box>
+        </form>
         </Box>
-        <Box>
-          <Button
-            type="submit"
-            sx={{
-            color: "black",
-            bgcolor: "white",
-            }}
-          >Create</Button>
         </Box>
-      </form>
-      </Box>
     </Box>
   );
 };
