@@ -1,4 +1,5 @@
-import { Box, Typography, Card, CardContent } from "@mui/material"
+import { Box, Typography, Card, CardContent, Icon } from "@mui/material"
+
 
 const MuiCard = ({task}) => {
   const { id,name,status } = task;
@@ -7,8 +8,9 @@ const MuiCard = ({task}) => {
       <Card key={id && id}>
         <CardContent>
           <Box>
+            <Icon>
+            </Icon>
             <Typography>{name && name}</Typography>
-          
         </Box>
         <Box >
           <Typography >{status && status}</Typography>

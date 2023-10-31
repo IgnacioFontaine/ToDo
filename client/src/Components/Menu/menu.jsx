@@ -6,6 +6,7 @@ import Fade from '@mui/material/Fade';
 import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from "@mui/material"
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function FadeMenu() {
 
@@ -40,7 +41,8 @@ export default function FadeMenu() {
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
-      >
+        >
+          <MenuItem ><PersonIcon /></MenuItem>
           <MenuItem >Profile</MenuItem>
           <MenuItem >UserName</MenuItem>
           <MenuItem onClick={() => navigate("/login")}>Logout</MenuItem>
