@@ -1,15 +1,26 @@
-import {Box,Typography, Button, Icon } from "@mui/material"
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {Box,Typography, Button} from "@mui/material"
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase/firebase";
-import PersonIcon from '@mui/icons-material/Person';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginFirebase = () => {
+  const navigate = useNavigate()
+  const [currentUser, setCurrentUser] = useState(null);
+  const [state, setCurrentState] = useState(0);
 
   useEffect(() => {
-    
-  },[])
+    onAuthStateChanged(auth, handleUserStateChanged)
+  }, [])
+  
+  function handleUserStateChanged(user) {
+    if (user) {
+      console.log(user.displayName)
+    } else {
+      console.log("Nadie autenticado")
+    }
+  }
   
   async function handleClick() {
     const googleProvider = new GoogleAuthProvider();
@@ -18,6 +29,7 @@ const LoginFirebase = () => {
     async function signInWhithGoogle(googleProvider) {
       try {
         const res = await signInWithPopup(auth, googleProvider);
+        navigate("/");
         console.log(res);
       } catch (error) {
         console.error(error)
@@ -35,11 +47,10 @@ const LoginFirebase = () => {
           <Box>
             <Typography variant="h2" >To Do App</Typography>
           </Box>
-          <Box>
-            <Icon>
-              <PersonIcon />
-            </Icon>
-           <Typography variant="h3" >Login with Google</Typography>
+          <Box >
+            <Box>
+              <Typography variant="h3" >Login with Google</Typography>
+            </Box>
           </Box>
         </Box>
         <Box >
