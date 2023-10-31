@@ -1,6 +1,6 @@
 import {Box,Typography, Button} from "@mui/material"
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth } from "../Firebase/firebase";
+import { auth, userExist } from "../Firebase/firebase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,9 +14,14 @@ const LoginFirebase = () => {
     onAuthStateChanged(auth, handleUserStateChanged)
   }, [])
   
-  function handleUserStateChanged(user) {
+  async function handleUserStateChanged(user) {
     if (user) {
-      console.log(user.displayName)
+      
+      const isRegisted = await userExist(user.uid);
+      if (isRegisted) {
+        setCurrentUser(user);
+      }
+
     } else {
       console.log("Nadie autenticado")
     }
