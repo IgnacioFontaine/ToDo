@@ -1,11 +1,21 @@
 import {Box,Typography, Button } from "@mui/material"
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../Firebase/firebase";
 
 
 const LoginFirebase = () => {
 
   function handleClick(){
     const googleProvider = new GoogleAuthProvider();
+  }
+
+  async function signInWhithGoogle(googleProvider) {
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      console.log(res);
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
