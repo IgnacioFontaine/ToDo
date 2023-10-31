@@ -15,6 +15,7 @@ import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import EditIcon from '@mui/icons-material/Edit';
 import {  getAllTask ,getTaskStatusOn,getTaskStatusOff, deleteTask, modifyStatusTask } from "../../Redux/actions"
 
 
@@ -81,11 +82,13 @@ const Home = () => {
                         </Box>
 
                         <Box>
-                          <Icon>
-                          <DeleteForeverRoundedIcon
-                            onClick={() => handleDelete(row?.id)}
-                          ></DeleteForeverRoundedIcon>
+                          <Box>
+                            <Icon>
+                              <DeleteForeverRoundedIcon
+                                onClick={() => handleDelete(row?.id)}
+                              ></DeleteForeverRoundedIcon>
                         </Icon>
+                          </Box>
                         </Box>
                       </Box>
                     </Box>

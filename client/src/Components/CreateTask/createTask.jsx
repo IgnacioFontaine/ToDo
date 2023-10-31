@@ -38,6 +38,7 @@ const CreateTask = () => {
     });
     setButton({ value: "Modify" });
   };
+  
 
   return (
     <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"35vw", boxShadow:2}}>
@@ -66,8 +67,9 @@ const CreateTask = () => {
             color: "black",
             bgcolor: "white",
             
-            }}
-          >Create</Button>
+              }}
+            value={button.value}
+          >{button.value}</Button>
         </Box>
         </Box>
       </form>
