@@ -41,3 +41,7 @@ export async function userExist(uid) {
 
   return res.exists;
 }
+
+export async function logout() {
+  await auth.signOut();
+}
