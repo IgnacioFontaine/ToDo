@@ -7,7 +7,18 @@ import {
   getDowloadURL,
   getBytes
 } from "firebase/storage"
-
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  addDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+  deleteDoc
+} from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe7k2j1wqhPn91nkVK5SLjlV_1hdJTRYw",
