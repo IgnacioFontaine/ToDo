@@ -4,6 +4,7 @@ import Home from './Components/Home/home';
 import Login from './Components/Login/login';
 import CreateUser from './Components/CreateUser/createUser';
 import Error from './Components/Error/error';
+import LoginFirebase from './Components/LoginFirebase/loginFirebase';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/loginFirebase" element={<LoginFirebase />} />
         <Route path="/register" element={<CreateUser />} />
         <Route path="*" element={<Error />} />
 

@@ -68,8 +68,7 @@ const CreateTask = () => {
             bgcolor: "white",
             
               }}
-            value={button.value}
-          >{button.value}</Button>
+          >Create</Button>
         </Box>
         </Box>
       </form>

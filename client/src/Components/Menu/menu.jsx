@@ -22,7 +22,7 @@ export default function FadeMenu() {
   
   
     return (
-      <Box sx={{display:"flex", alignContent:"flex-start"}}>
+      <Box sx={{display:"flex", alignContent:"flex-start", bgcolor:"whitesmoke", borderRadius:4, width:"3.5vw",height:"10vh", boxShadow:2}}>
       <Button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}

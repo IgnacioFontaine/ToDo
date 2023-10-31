@@ -5,8 +5,9 @@ import { auth } from "../Firebase/firebase";
 
 const LoginFirebase = () => {
 
-  function handleClick(){
+  async function handleClick(){
     const googleProvider = new GoogleAuthProvider();
+    await signInWhithGoogle(googleProvider);
   }
 
   async function signInWhithGoogle(googleProvider) {

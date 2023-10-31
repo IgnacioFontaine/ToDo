@@ -47,11 +47,9 @@ const Home = () => {
 
   return (
     <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5, bgcolor:"#A5A5A5" }}>
-      <Box  >
-        <Menu />
-      </Box>
-      <Box>
-        <CreateTask />
+      <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
+        <Box><CreateTask /></Box>
+        <Box><Menu /></Box>
       </Box>
       <Box sx={{display:"flex", m:3}}>
         <Box>
