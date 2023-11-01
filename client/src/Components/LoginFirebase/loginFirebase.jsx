@@ -21,7 +21,6 @@ const LoginFirebase = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -33,7 +32,9 @@ const LoginFirebase = () => {
             uid: user.uid,
             displayName: user.displayName,
             email:user.email
-          });
+        });
+        
+        dispatch(setUser(user));
 
         // if (userExists(uid)) {
         //   console.log("user registered");
@@ -58,7 +59,7 @@ const LoginFirebase = () => {
         navigate("/login");
       }
     });
-  }, []);
+  }, [navigate]);
 
   // const currentUser = useSelector((state) => state?.current_user)
   
@@ -72,8 +73,6 @@ const LoginFirebase = () => {
     event.preventDefault();
 
   }
-
-  
   
   async function handleClick() {
     const googleProvider = new GoogleAuthProvider();
