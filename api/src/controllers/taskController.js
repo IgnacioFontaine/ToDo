@@ -3,11 +3,13 @@ const { Task } = require("../db")
 const createTaskDB = async (
   name,
   status,
+  user
 ) => {
   try {
     let newTask = Task.create({
       name,
-      status
+      status,
+      user
     });
     return newTask;
   } catch (error) {
@@ -24,11 +26,11 @@ const getAllTask = async () => {
   }
 };
 
-const getTasksByUser = async (id) => {
+const getTasksByUser = async (user) => {
   try {
     let tasks = await Task.findAll({
       where: {
-        id: id,
+        user: user,
       },
     });
     return tasks;
@@ -107,5 +109,6 @@ module.exports = {
   deleteTask,
   updateStatusTask,
   updateTask,
-  getTasksByStatus
+  getTasksByStatus,
+  getTasksByUser
 };

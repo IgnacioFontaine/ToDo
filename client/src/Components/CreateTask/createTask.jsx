@@ -2,17 +2,21 @@ import {Box,Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTask, modifyTask } from "../../Redux/actions"
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
-const EMPTY_FORM = {
-  name:"",
-  status: "ON",
-  user:"User1"
-};
+
 
 const CreateTask = () => {
    const dispatch = useDispatch()
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [button, setButton] = useState("Create")
+  const currentUser = useSelector((state) => state?.current_user)
+
+  const EMPTY_FORM = {
+  name:"",
+  status: "ON",
+  user: currentUser.uid
+};
 
 
   const handleChange = (event) =>

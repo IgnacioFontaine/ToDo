@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM("ON", "OFF"),
         allowNull: false,
       },
+      user : {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     { timestamps: false }
   );

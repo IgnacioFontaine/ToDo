@@ -43,8 +43,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User, Task  } = sequelize.models;
 
 // Relaciones
-User.hasMany(Task);
-Task.belongsTo(User);
+// User.hasMany(Task);
+// Task.belongsTo(User);
 
 module.exports = {
   ...sequelize.models,

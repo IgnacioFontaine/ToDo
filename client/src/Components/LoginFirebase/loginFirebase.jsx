@@ -36,30 +36,11 @@ const LoginFirebase = () => {
         
         dispatch(setUser(user));
 
-        // if (userExists(uid)) {
-        //   console.log("user registered");
-        //   dispatch(setUser(user));
-        //   // console.log("loggedUser", currentUser  );
-          
-
-        // } else {
-        //   console.log("Register");
-
-        //   registerNewUser({
-        //     uid: user.uid,
-        //     displayName: user.displayName,
-        //     email:user.email
-        //   });
-          
-        //   dispatch(setUser(user))
-          
-        //   console.log("registrado!");
-        // }
       } else {
         navigate("/login");
       }
     });
-  }, [navigate]);
+  }, [navigate, dispatch]);
 
   // const currentUser = useSelector((state) => state?.current_user)
   

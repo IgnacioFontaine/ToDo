@@ -7,7 +7,7 @@ const {
     deleteTask,
     updateStatusTask,
     updateTask,
-    getTasksByStatus
+    getTasksByStatus,
 } = require("../controllers/taskController");
 
 const { User } = require("../db")
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   try {
     const { user } = req.params;
     if (user) {
-      tareas_user = await getTasksByUser()
+      tareas_user = await getTasksByUser(user)
       
       return res.status(200).json(tareas_user);
         
@@ -56,21 +56,22 @@ router.get("/status/off", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, status, user } = req.body;
+    const { name, status, user  } = req.body;
 
     //Create
     const newTask = await createTaskDB(
       name,
-      status
+      status,
+      user 
     );
 
-    let userDB = await User.findOne({
-      where: {
-        name: user,
-      },
-    })
+    // let userDB = await User.findOne({
+    //   where: {
+    //     name: user,
+    //   },
+    // })
 
-    newTask.setUser(userDB)
+    // newTask.setUser(userDB)
 
     //Return
     return res.status(200).json(newTask);
