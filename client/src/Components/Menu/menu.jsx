@@ -9,7 +9,7 @@ import { Box } from "@mui/material"
 import PersonIcon from '@mui/icons-material/Person';
 import { logout } from "../Firebase/firebase";
 
-export default function FadeMenu() {
+export default  function FadeMenu() {
 
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
