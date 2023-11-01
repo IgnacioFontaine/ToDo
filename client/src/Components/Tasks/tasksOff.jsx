@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import { useDispatch} from "react-redux";
-import CheckBoxIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { deleteTask, modifyStatusTask } from "../../Redux/actions"
 
 const Tasks = ({ tasks }) => {

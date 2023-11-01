@@ -8,7 +8,6 @@ const initialState = {
   tasks_by_user: [],
   on_task: [],
   off_task:[],
-  
 };
 
 //Config reducer
@@ -93,6 +92,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         tasks_by_user: action.payload,
+        on_task: action.payload.filter((task) => task.status === "ON"),
+        off_task: action.payload.filter((task) => task.status === "OFF")
       };
     
     case ACTION_TYPES.SET_USER:

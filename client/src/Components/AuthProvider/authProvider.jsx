@@ -33,13 +33,7 @@ export default function AuthProvider({
             onUserLoggedIn(loggedUser);
           }
         } else {
-          await registerNewUser({
-            uid: user.uid,
-            displayName: user.displayName,
-            email: user.email,
-            username: "",
-            processCompleted: false,
-          });
+          
           navigate("/");
         }
       } else {

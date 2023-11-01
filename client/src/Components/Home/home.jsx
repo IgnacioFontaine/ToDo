@@ -6,9 +6,11 @@ import CreateTask from "../CreateTask/createTask";
 import { getTaskUser, setUser } from "../../Redux/actions"
 import Tasks from "../Tasks/tasks";
 import TasksOff from "../Tasks/tasksOff";
+import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
+  const navigate = useNavigate()
   const user = useSelector((state) => state?.current_user);
   const dispatch = useDispatch()
 
@@ -18,29 +20,39 @@ const Home = () => {
 
   }, [dispatch,user]);
 
-  const all_task = useSelector((state) => state?.tasks_by_user);
-  const Tasks_on = all_task?.filter((task) => task.status === "ON");
-  const Tasks_off = all_task?.filter((task) => task.status === "OFF");
+  const Tasks_on = useSelector((state) => state?.on_task)
+  const Tasks_off = useSelector((state) => state?.off_task)
 
+  if (!user) {
+    return (
+      <Box>{navigate("/login")}</Box>
+    ) 
+  }
 
-  return (
-    <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5, bgcolor:"#A5A5A5" }}>
-      <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
-        <Box><CreateTask /></Box>
-        <Box><Menu /></Box>
-      </Box>
-      <Box sx={{display:"flex", m:3}}>
-          <Box>
-            <Tasks tasks={Tasks_on} ></Tasks>
+  if (user) {
+    return (
+        <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5,bgcolor:"#A5A5A5" }}>
+          <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
+            <Box>
+              <CreateTask />
+            </Box>
+            <Box>
+              <Menu />
+            </Box>
           </Box>
-          <Box>
-            <TasksOff tasks={Tasks_off} ></TasksOff>
+          <Box sx={{display:"flex", m:3}}>
+              <Box>
+                <Tasks tasks={Tasks_on} ></Tasks>
+              </Box>
+              <Box>
+                <TasksOff tasks={Tasks_off} ></TasksOff>
+              </Box>
+            <Box>
+            </Box>
           </Box>
-        <Box>
         </Box>
-      </Box>
-    </Box>
-  );
+    );
+  }
 };
 
 export default Home;
