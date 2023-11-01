@@ -1,22 +1,22 @@
 import {Box,Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createTask, modifyTask } from "../../Redux/actions"
+import { createTask } from "../../Redux/actions"
 import { useSelector } from "react-redux/es/hooks/useSelector";
 
 
 
 const CreateTask = () => {
-   const dispatch = useDispatch()
-  const [formData, setFormData] = useState(EMPTY_FORM);
-  const [button, setButton] = useState("Create")
+  const dispatch = useDispatch()
   const currentUser = useSelector((state) => state?.current_user)
 
-  const EMPTY_FORM = {
+  const [formData, setFormData] = useState({
   name:"",
   status: "ON",
   user: currentUser.uid
-};
+});
+  const [button, setButton] = useState("Create")
+
 
 
   const handleChange = (event) =>
@@ -24,24 +24,34 @@ const CreateTask = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    if (button.value === "Create") {
-        dispatch(createTask(formData))
-      } else {
-        dispatch(modifyTask(formData.id, formData));
-        setButton({ value: "Create" });
-      }
-      setFormData(EMPTY_FORM);
-
-  };
-
-  const handleUpdate = (id, status) => {
+    dispatch(createTask(formData))
     setFormData({
-      id: id,
-      status:status
-    });
-    setButton({ value: "Modify" });
+          name:"",
+          status: "ON",
+          user: currentUser.uid
+})
+    
+//     if (button.value === "Create") {
+//         dispatch(createTask(formData))
+//       } else {
+//         dispatch(modifyTask(formData.id, formData));
+//         setButton({ value: "Create" });
+//       }
+//       setFormData({
+//           name:"",
+//           status: "ON",
+//           user: currentUser.uid
+// });
+
   };
+
+  // const handleUpdate = (id, status) => {
+  //   setFormData({
+  //     id: id,
+  //     status:status
+  //   });
+  //   setButton({ value: "Modify" });
+  // };
   
 
   return (
@@ -70,7 +80,6 @@ const CreateTask = () => {
             sx={{
             color: "black",
             bgcolor: "white",
-            
               }}
           >Create</Button>
         </Box>

@@ -89,6 +89,12 @@ const reducer = (state = initialState, action) => {
         error: true,
       };
     
+    case ACTION_TYPES.GET_TASKS_USER:
+      return {
+        ...state,
+        tasks_by_user: action.payload,
+      };
+    
     case ACTION_TYPES.SET_USER:
       return {
         ...state,

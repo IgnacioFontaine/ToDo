@@ -16,7 +16,7 @@ import CreateTask from "../CreateTask/createTask";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import EditIcon from '@mui/icons-material/Edit';
-import {  getAllTask , getTaskStatusOn, getTaskStatusOff, deleteTask, modifyStatusTask } from "../../Redux/actions"
+import { getTaskStatusOn, getTaskStatusOff, deleteTask, modifyStatusTask, getTaskUser } from "../../Redux/actions"
 
 
 const Home = () => {
@@ -24,16 +24,12 @@ const Home = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getTaskStatusOn());
-    dispatch(getTaskStatusOff());
-    dispatch(getAllTask());
+    dispatch(getTaskUser());
 
   }, [dispatch]);
-
-  const Tasks_on = useSelector((state) => state?.on_task)
-  const Tasks_off = useSelector((state) => state?.off_task)
-
-
+  const all_task = useSelector((state) => state?.tasks_by_user)
+  const Tasks_on = all_task?.filter((task)=>task.status === "ON")
+  const Tasks_off = all_task?.filter((task)=>task.status === "OFF")
 
   const handleDelete = (id) => {
     dispatch(deleteTask(id));
