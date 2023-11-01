@@ -116,7 +116,7 @@ const LoginFirebase = () => {
         </Box>
         <Box >
           <Box>
-            <Typography>Or Login with:</Typography>
+            <Typography variant="h3">Or Login with:</Typography>
           </Box>
           <Icon>
             <GoogleIcon sx={{cursor:"pointer"}} onClick={()=>handleClick()} />
