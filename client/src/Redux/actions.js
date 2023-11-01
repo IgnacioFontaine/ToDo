@@ -15,6 +15,15 @@ export const getAllTask = () => async (dispatch) => {
   }
 };
 
+export const getTaskUser = (user) => async (dispatch) => {
+  try {
+    let result = await axios.get(`http://localhost:3001/task?user=${user}`);
+    return dispatch({ type: ACTION_TYPES.GET_TASKS_USER, payload: result.data });
+  } catch (error) {
+    return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
+  }
+};
+
 export const createTask = (task) => async (dispatch) => {
   const newtask = await axios.post("http://localhost:3001/task", task);
   return dispatch({ type: ACTION_TYPES.CREATE_TASK, payload: newtask.data });
