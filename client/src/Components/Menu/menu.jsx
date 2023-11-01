@@ -3,16 +3,17 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from "@mui/material"
 import PersonIcon from '@mui/icons-material/Person';
 import { logout } from "../Firebase/firebase";
+import {  useSelector } from 'react-redux/es/hooks/useSelector';
 
 
 export default function FadeMenu() {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,6 +22,8 @@ export default function FadeMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const name_user = useSelector((state)=>state?.current_user.displayName)
   
   
     return (
@@ -43,9 +46,9 @@ export default function FadeMenu() {
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
+          
         >
-          <MenuItem ><PersonIcon /></MenuItem>
-          <MenuItem >UserName</MenuItem>
+          <MenuItem ><PersonIcon />  {name_user}</MenuItem>
           <MenuItem onClick={() => logout()}>Logout</MenuItem>
       </Menu>
     </Box>

@@ -5,12 +5,10 @@ import { useNavigate } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
 import {
   auth,
-  getUserInfo,
-  read,
   registerNewUser,
   userExists,
 } from "../Firebase/firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../../Redux/actions";
 
 
@@ -22,17 +20,48 @@ const EMPTY_FORM = {
 const LoginFirebase = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [currentUser, setCurrentUser] = useState(null);
-  /*
-  Stages:
-  0: initiated
-  1: loading
-  2: login completed
-  3: login but no username
-  4: not logged
-*/
-  const [state, setState] = useState(0);
 
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+
+        registerNewUser({
+            uid: user.uid,
+            displayName: user.displayName,
+            email:user.email
+          });
+
+        // if (userExists(uid)) {
+        //   console.log("user registered");
+        //   dispatch(setUser(user));
+        //   // console.log("loggedUser", currentUser  );
+          
+
+        // } else {
+        //   console.log("Register");
+
+        //   registerNewUser({
+        //     uid: user.uid,
+        //     displayName: user.displayName,
+        //     email:user.email
+        //   });
+          
+        //   dispatch(setUser(user))
+          
+        //   console.log("registrado!");
+        // }
+      } else {
+        navigate("/login");
+      }
+    });
+  }, []);
+
+  // const currentUser = useSelector((state) => state?.current_user)
+  
   const [formData, setFormData] = useState(EMPTY_FORM);
 
 
@@ -44,41 +73,7 @@ const LoginFirebase = () => {
 
   }
 
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log(user);
-
-        if (userExists(user.uid)) {
-          console.log("user registered");
-
-          const loggedUser = await getUserInfo(uid);
-          console.log("loggedUser", loggedUser);
-          setCurrentUser(loggedUser);
-          dispatch(setUser(user))
-
-        } else {
-          console.log("Register");
-
-          registerNewUser({
-            uid: user.uid,
-            displayName: user.displayName,
-            email:user.email
-          });
-          
-          dispatch(setUser(user))
-          
-          console.log("registrado!");
-          setState(3);
-        }
-      } else {
-        navigate("/login");
-      }
-    });
-  }, []);
+  
   
   async function handleClick() {
     const googleProvider = new GoogleAuthProvider();

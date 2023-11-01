@@ -39,7 +39,9 @@ export async function userExists(uid) {
   const docRef = doc(db, "users", uid);
   const res = await getDoc(docRef);
 
+  console.log(res.exists);
   return res.exists;
+  
 }
 
 export async function registerNewUser(user) {
