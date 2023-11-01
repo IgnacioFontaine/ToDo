@@ -1,9 +1,15 @@
 import {Box,Typography, Button, Icon, TextField} from "@mui/material"
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth, userExist } from "../Firebase/firebase";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
+import {
+  auth,
+  getUserInfo,
+  read,
+  registerNewUser,
+  userExists,
+} from "../Firebase/firebase";
 
 const EMPTY_FORM = {
   email: "",
@@ -13,7 +19,7 @@ const EMPTY_FORM = {
 const LoginFirebase = () => {
   const navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState(null);
-  const [state, setCurrentState] = useState(0);
+  const [state, setState] = useState(0);
 
   const [formData, setFormData] = useState(EMPTY_FORM);
 
@@ -27,21 +33,36 @@ const LoginFirebase = () => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, handleUserStateChanged)
-  }, [])
-  
-  async function handleUserStateChanged(user) {
-    if (user) {
-      
-      const isRegisted = await userExist(user.uid);
-      if (isRegisted) {
-        setCurrentUser(user);
-      }
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        console.log(user);
 
-    } else {
-      console.log("Nadie autenticado")
-    }
-  }
+        if (userExists(user.uid)) {
+          console.log("user registered");
+
+          const loggedUser = await getUserInfo(uid);
+          console.log("loggedUser", loggedUser);
+          setCurrentUser(loggedUser);
+
+        } else {
+          console.log("Register");
+
+          registerNewUser({
+            uid: user.uid,
+            displayName: user.displayName,
+            email:user.email
+          });
+
+          setState(3);
+        }
+      } else {
+        navigate("/login");
+      }
+    });
+  }, []);
   
   async function handleClick() {
     const googleProvider = new GoogleAuthProvider();
@@ -56,7 +77,6 @@ const LoginFirebase = () => {
         console.error(error)
       }
     }
-
   }
 
   

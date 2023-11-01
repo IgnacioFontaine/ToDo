@@ -36,11 +36,11 @@ export default function AuthProvider({
           await registerNewUser({
             uid: user.uid,
             displayName: user.displayName,
-            profilePicture: "",
+            email: user.email,
             username: "",
             processCompleted: false,
           });
-          navigate("/choose-username");
+          navigate("/");
         }
       } else {
         onUserNotLoggedIn();
