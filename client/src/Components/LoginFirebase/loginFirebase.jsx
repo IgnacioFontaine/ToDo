@@ -19,6 +19,14 @@ const EMPTY_FORM = {
 const LoginFirebase = () => {
   const navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState(null);
+  /*
+  Stages:
+  0: initiated
+  1: loading
+  2: login completed
+  3: login but no username
+  4: not logged
+*/
   const [state, setState] = useState(0);
 
   const [formData, setFormData] = useState(EMPTY_FORM);
@@ -55,7 +63,8 @@ const LoginFirebase = () => {
             displayName: user.displayName,
             email:user.email
           });
-
+          const user_register = 
+          console.log("registrado!");
           setState(3);
         }
       } else {

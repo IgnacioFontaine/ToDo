@@ -2,6 +2,7 @@ import ACTION_TYPES from './actionTypes'
 
 //Config initialState
 const initialState = {
+  current_user:[],
   users:[],
   all_tasks: [],
   tasks_by_user: [],
@@ -86,6 +87,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         error: true,
+      };
+    
+    case ACTION_TYPES.SET_USER:
+      return {
+        ...state,
+        current_user: action.payload,
       };
     
     default:

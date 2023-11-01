@@ -96,3 +96,8 @@ export const getTaskStatusOff = () => async (dispatch) => {
   }
 };
 
+export const setUser = (userData) => ({
+  type: ACTION_TYPES.SET_USER,
+  payload: userData,
+});
+
