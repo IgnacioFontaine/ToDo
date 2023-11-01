@@ -10,6 +10,9 @@ import {
   registerNewUser,
   userExists,
 } from "../Firebase/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../Redux/actions";
+
 
 const EMPTY_FORM = {
   email: "",
@@ -18,6 +21,7 @@ const EMPTY_FORM = {
 
 const LoginFirebase = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [currentUser, setCurrentUser] = useState(null);
   /*
   Stages:
@@ -54,6 +58,7 @@ const LoginFirebase = () => {
           const loggedUser = await getUserInfo(uid);
           console.log("loggedUser", loggedUser);
           setCurrentUser(loggedUser);
+          dispatch(setUser(user))
 
         } else {
           console.log("Register");
@@ -63,7 +68,9 @@ const LoginFirebase = () => {
             displayName: user.displayName,
             email:user.email
           });
-          const user_register = 
+          
+          dispatch(setUser(user))
+          
           console.log("registrado!");
           setState(3);
         }
