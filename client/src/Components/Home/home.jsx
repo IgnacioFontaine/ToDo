@@ -1,21 +1,11 @@
-import { Box, Typography, TableHead } from "@mui/material"
-import {
-  Icon,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-} from "@mui/material";
-import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import { Box } from "@mui/material"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import { deleteTask, modifyStatusTask, getTaskUser, setUser } from "../../Redux/actions"
+import { getTaskUser, setUser } from "../../Redux/actions"
+import Tasks from "../Tasks/tasks";
+import TasksOff from "../Tasks/tasksOff";
 
 
 const Home = () => {
@@ -26,21 +16,11 @@ const Home = () => {
     dispatch(getTaskUser(user));
     dispatch(setUser(user));
 
-  }, [dispatch, user]);
+  }, [dispatch,user]);
 
   const all_task = useSelector((state) => state?.tasks_by_user);
   const Tasks_on = all_task?.filter((task) => task.status === "ON");
   const Tasks_off = all_task?.filter((task) => task.status === "OFF");
-
-  const handleDelete = (id) => {
-    dispatch(deleteTask(id));
-    dispatch(getTaskUser(user));
-  };
-
-  const handleUpdateStatus = (id) => {
-    dispatch(modifyStatusTask(id));
-    dispatch(getTaskUser(user));
-  }
 
 
   return (
@@ -50,97 +30,13 @@ const Home = () => {
         <Box><Menu /></Box>
       </Box>
       <Box sx={{display:"flex", m:3}}>
-        <Box>
           <Box>
-        <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto", p:2, backgroundColor:"#B3FFB4", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark", boxShadow:2}}
-          style={{backgroundImage: 'none'}}
-          component={Paper}
-        >
-            <Table >
-              <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" sx={{m:1}} >Task On:</Typography>
-              </TableHead>
-            <TableBody style={{}}>
-              {Tasks_on?.map((row) => (
-                <TableRow key={row?.id}>
-                  <TableCell
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Box>{row?.name}</Box>
-                    <Box>{row?.status}</Box>
-                    <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
-                        <Box>
-                          <Icon>
-                          <CheckBoxOutlineBlankIcon onClick={() => handleUpdateStatus(row?.id)} ></CheckBoxOutlineBlankIcon> 
-                        </Icon>
-                        </Box>
-
-                        <Box>
-                          <Box>
-                            <Icon>
-                              <DeleteForeverRoundedIcon
-                                onClick={() => handleDelete(row?.id)}
-                              ></DeleteForeverRoundedIcon>
-                        </Icon>
-                          </Box>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-        </Box>
-        <Box>
+            <Tasks tasks={Tasks_on} ></Tasks>
+          </Box>
           <Box>
-        <TableContainer
-          sx={{ height: "60vh",width:"28vw", overflow: "auto",  p:2 , backgroundColor:"#FD9696", color:"rgba(255, 255, 255, 0.87)", colorScheme:"light dark", boxShadow:2}}
-          style={{backgroundImage: 'none'}}
-          component={Paper}
-        >
-            <Table >
-              <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
-                <Typography variant="h4" sx={{m:1}} >Task Off:</Typography>
-              </TableHead>
-            <TableBody style={{}} >
-              {Tasks_off?.map((row) => (
-                <TableRow key={row?.id}>
-                  <TableCell
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Box>{row?.name}</Box>
-                    <Box>{row?.status}</Box>
-                    <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer", display: "flex", gap:1 }}>
-                        
-                        <Box>
-                          <Icon>
-                          <CheckBoxIcon onClick={() => handleUpdateStatus(row?.id)} ></CheckBoxIcon> 
-                        </Icon>
-                        </Box>
-
-                        <Box>
-                          <Icon>
-                          <DeleteForeverRoundedIcon
-                            onClick={() => handleDelete(row?.id)}
-                          ></DeleteForeverRoundedIcon>
-                        </Icon>
-                        </Box>
-
-                      </Box>
-                    </Box>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+            <TasksOff tasks={Tasks_off} ></TasksOff>
+          </Box>
+        <Box>
         </Box>
       </Box>
     </Box>
