@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
 import {
   auth,
-  registerNewUser,
-  userExists,
+  registerNewUser
 } from "../Firebase/firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../Redux/actions";
@@ -41,8 +40,6 @@ const LoginFirebase = () => {
       }
     });
   }, [navigate, dispatch]);
-
-  // const currentUser = useSelector((state) => state?.current_user)
   
   const [formData, setFormData] = useState(EMPTY_FORM);
 

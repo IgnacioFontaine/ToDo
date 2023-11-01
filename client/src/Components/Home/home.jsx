@@ -15,29 +15,31 @@ import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import EditIcon from '@mui/icons-material/Edit';
-import { getTaskStatusOn, getTaskStatusOff, deleteTask, modifyStatusTask, getTaskUser } from "../../Redux/actions"
+import { deleteTask, modifyStatusTask, getTaskUser, setUser } from "../../Redux/actions"
 
 
 const Home = () => {
-
+  const user = useSelector((state) => state?.current_user);
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getTaskUser());
+    dispatch(getTaskUser(user));
+    dispatch(setUser(user));
 
-  }, [dispatch]);
-  const all_task = useSelector((state) => state?.tasks_by_user)
-  const Tasks_on = all_task?.filter((task)=>task.status === "ON")
-  const Tasks_off = all_task?.filter((task)=>task.status === "OFF")
+  }, [dispatch, user]);
+
+  const all_task = useSelector((state) => state?.tasks_by_user);
+  const Tasks_on = all_task?.filter((task) => task.status === "ON");
+  const Tasks_off = all_task?.filter((task) => task.status === "OFF");
 
   const handleDelete = (id) => {
     dispatch(deleteTask(id));
+    dispatch(getTaskUser(user));
   };
 
   const handleUpdateStatus = (id) => {
     dispatch(modifyStatusTask(id));
-
+    dispatch(getTaskUser(user));
   }
 
 

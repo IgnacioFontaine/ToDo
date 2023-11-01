@@ -15,8 +15,6 @@ const CreateTask = () => {
   status: "ON",
   user: currentUser.uid
 });
-  const [button, setButton] = useState("Create")
-
 
 
   const handleChange = (event) =>
@@ -29,30 +27,9 @@ const CreateTask = () => {
           name:"",
           status: "ON",
           user: currentUser.uid
-})
-    
-//     if (button.value === "Create") {
-//         dispatch(createTask(formData))
-//       } else {
-//         dispatch(modifyTask(formData.id, formData));
-//         setButton({ value: "Create" });
-//       }
-//       setFormData({
-//           name:"",
-//           status: "ON",
-//           user: currentUser.uid
-// });
+    })
 
   };
-
-  // const handleUpdate = (id, status) => {
-  //   setFormData({
-  //     id: id,
-  //     status:status
-  //   });
-  //   setButton({ value: "Modify" });
-  // };
-  
 
   return (
     <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"35vw", boxShadow:2}}>
