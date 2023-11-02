@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   auth,
-  getUserInfo,
-  userExists,
-  registerNewUser,
+  userExists
 } from "../Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +9,6 @@ import { Box } from "@mui/material";
 
 export default function AuthProvider({
   children,
-  onUserLoggedIn,
-  onUserNotLoggedIn,
 }) {
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,27 +16,18 @@ export default function AuthProvider({
       if (user) {
         const uid = user.uid;
 
-        const exists = await userExists(user.uid);
+        const exists = await userExists(uid);
 
         if (exists) {
-          const loggedUser = await getUserInfo(uid);
-
-          if (!loggedUser.processCompleted) {
-            console.log("Falta username");
-            navigate("/choose-username");
-          } else {
-            console.log("Usuario logueado completo");
-            onUserLoggedIn(loggedUser);
-          }
-        } else {
-          
           navigate("/");
+        } else {
+          navigate("/login");
         }
       } else {
-        onUserNotLoggedIn();
+        navigate("/login");
       }
     });
-  }, []);
+  }, [navigate]);
 
   return <Box>{children}</Box>;
 }

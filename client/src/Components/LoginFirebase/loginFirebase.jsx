@@ -25,7 +25,6 @@ const LoginFirebase = () => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
 
         registerNewUser({
             uid: user.uid,
@@ -71,7 +70,7 @@ const LoginFirebase = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", bgcolor: "#A5A5A5", height: "100vh", width: "100vw", alignContent: "center" }}>
-      <Box sx={{ alignContent:"center",alignItems:"center" ,boxShadow: 2, m:20, p:5, bgcolor:"#E6E6E6", borderRadius:5 }}>
+      <Box sx={{ alignContent:"center",alignItems:"center" ,boxShadow: 2, m:15, p:4, bgcolor:"#E6E6E6", borderRadius:5 }}>
         <Box sx={{ display: "flex", flexDirection: "column", m: 5, borderColor: "black" }}>
           <Box>
             <Typography variant="h1" >To Do App</Typography>
@@ -124,7 +123,7 @@ const LoginFirebase = () => {
         </Box>
         <Box >
           <Box>
-            <Typography variant="h3">Or Login with:</Typography>
+            <Typography variant="h4">Or Login with:</Typography>
           </Box>
           <Icon>
             <GoogleIcon sx={{cursor:"pointer"}} onClick={()=>handleClick()} />

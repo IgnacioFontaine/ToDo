@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu/menu"
@@ -6,32 +6,32 @@ import CreateTask from "../CreateTask/createTask";
 import { getTaskUser, setUser } from "../../Redux/actions"
 import Tasks from "../Tasks/tasks";
 import TasksOff from "../Tasks/tasksOff";
-import { useNavigate } from "react-router-dom";
-
 
 const Home = () => {
-  const navigate = useNavigate()
-  const user = useSelector((state) => state?.current_user);
   const dispatch = useDispatch()
+  const user = useSelector((state) => state?.current_user);
 
   useEffect(() => {
     dispatch(getTaskUser(user));
     dispatch(setUser(user));
 
-  }, [dispatch,user]);
+  }, [dispatch, user]);
 
+  
   const Tasks_on = useSelector((state) => state?.on_task)
   const Tasks_off = useSelector((state) => state?.off_task)
 
+
+
   if (!user) {
-    return (
-      <Box>{navigate("/login")}</Box>
-    ) 
+    <Box>
+      <Typography>No existe user</Typography>
+    </Box>
   }
 
   if (user) {
     return (
-        <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5,bgcolor:"#A5A5A5" }}>
+      <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5,bgcolor:"#A5A5A5" }}>
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
             <Box>
               <CreateTask />

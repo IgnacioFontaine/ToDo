@@ -1,23 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"
 import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDowloadURL,
-  getBytes
-} from "firebase/storage"
-import {
   getFirestore,
   collection,
   doc,
   getDoc,
-  addDoc,
-  getDocs,
-  query,
   setDoc,
-  where,
-  deleteDoc
+  // addDoc,
+  // getDocs,
+  // query,
+  // where,
+  // deleteDoc
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -33,7 +26,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 export async function userExists(uid) {
   const docRef = doc(db, "users", uid);
