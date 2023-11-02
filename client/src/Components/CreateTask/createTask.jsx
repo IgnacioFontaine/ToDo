@@ -59,7 +59,7 @@ const CreateTask = () => {
             type="submit"
             sx={{
             color: "black",
-            bgcolor: "#B3FFB4",
+            bgcolor: "whitesmoke",
               }}
           >Create</Button>
         </Box>

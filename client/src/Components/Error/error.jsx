@@ -14,7 +14,7 @@ const Error = () => {
         </Box>
         <Box>
           <Typography variant="h2">Return to home</Typography>
-          <Button sx={{boxShadow:2,height: "7vh", width: "11vw"}} onClick={()=>navigate("/")}>Home</Button>
+          <Button sx={{boxShadow:2,height: "7vh", width: "11vw"}} onClick={()=>navigate("/login")}>Login</Button>
         </Box>
       </Box>
       </Box>
