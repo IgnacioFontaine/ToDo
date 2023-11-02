@@ -1,6 +1,5 @@
 import {Box,Typography, TextField, Button } from "@mui/material"
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 
 const EMPTY_FORM = {
   name:"",
@@ -10,8 +9,6 @@ const EMPTY_FORM = {
 
 const Login = () => {
   const [formData, setFormData] = useState(EMPTY_FORM);
-  const [errorResponse, setErrorResponse] = useState("")
-  const [estaAutenticado,setEstaAutenticado] = useState(false)
 
 
   const handleChange = (event) =>

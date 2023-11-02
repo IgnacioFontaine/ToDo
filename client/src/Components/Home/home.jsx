@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTask from "../CreateTask/createTask";
-import { getTaskUser, setUser } from "../../Redux/actions"
+import { getTaskUser, setUser} from "../../Redux/actions"
 import Tasks from "../Tasks/tasks";
 import TasksOff from "../Tasks/tasksOff";
 
@@ -14,6 +14,7 @@ const Home = () => {
     dispatch(getTaskUser(user));
     dispatch(setUser(user));
 
+    
   }, [dispatch, user]);
 
   
