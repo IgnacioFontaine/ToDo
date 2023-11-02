@@ -27,13 +27,14 @@ export default function FadeMenu() {
   
   
     return (
-      <Box sx={{display:"flex", alignContent:"flex-start", bgcolor:"whitesmoke", borderRadius:4, width:"3.5vw",height:"10vh", boxShadow:2}}>
+      <Box sx={{display:"flex", alignContent:"flex-start"}}>
       <Button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{color:"gray"}}
       >
         <MenuIcon />
       </Button>

@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Menu from "../Menu/menu"
 import CreateTask from "../CreateTask/createTask";
 import { getTaskUser, setUser } from "../../Redux/actions"
 import Tasks from "../Tasks/tasks";
@@ -35,9 +34,6 @@ const Home = () => {
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
             <Box>
               <CreateTask />
-            </Box>
-            <Box>
-              <Menu />
             </Box>
           </Box>
           <Box sx={{display:"flex", m:3}}>

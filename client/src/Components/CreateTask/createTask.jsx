@@ -1,8 +1,9 @@
-import {Box,Typography, TextField, Button } from "@mui/material"
+import { Box , TextField, Button } from "@mui/material"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTask } from "../../Redux/actions"
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import Menu from "../Menu/menu"
 
 
 
@@ -36,11 +37,12 @@ const CreateTask = () => {
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", gap: 5, alignItems: "center", textAlign:"center", m:5 }}>
           <Box ml={2}>
-            <Typography variant="h6">New Task: </Typography>
+            <Menu />
           </Box>
           <Box padding={1}>
             <TextField
-                label="Name"
+
+                label="New Task"
                 variant="outlined"
                 name="name"
                 autoComplete="off"
