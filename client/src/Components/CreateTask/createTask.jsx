@@ -45,11 +45,12 @@ const CreateTask = () => {
                 label="New Task"
                 variant="outlined"
                 name="name"
-                autoComplete="off"
+                autoComplete="none"
                 value={formData.name}
                 onChange={handleChange}
                 fullWidth
                 margin="normal"
+                sx={{borderColor:"grey", color:"grey"}}
 
             />
           </Box>

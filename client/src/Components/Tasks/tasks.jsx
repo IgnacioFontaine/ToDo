@@ -44,7 +44,7 @@ const Tasks = ({ tasks }) => {
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <Box>{row?.name}</Box>
-                    <Box>{row?.status}</Box>
+                    {/* <Box>{row?.status}</Box> */}
                     <Box sx={{ display: "flex" }}>
                       <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
                         <Box>
