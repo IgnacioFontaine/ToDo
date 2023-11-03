@@ -9,8 +9,9 @@ import {
   TableRow,
 } from "@mui/material";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import { useDispatch} from "react-redux";
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import { useDispatch} from "react-redux";
 import { deleteTask, modifyStatusTask } from "../../Redux/actions"
 
 const Tasks = ({ tasks }) => {
@@ -38,7 +39,7 @@ const Tasks = ({ tasks }) => {
                 <Typography variant="h4" sx={{m:1}} >Task On:</Typography>
               </TableHead>
             <TableBody style={{}}>
-              {tasks?.map((row) => (
+              {tasks[0] ? tasks.map((row) => (
                 <TableRow key={row?.id}>
                   <TableCell
                     sx={{ display: "flex", justifyContent: "space-between" }}
@@ -66,7 +67,26 @@ const Tasks = ({ tasks }) => {
                     </Box>
                   </TableCell>
                 </TableRow>
-              ))}
+              )) : (
+                <TableRow key={1}>
+                  <TableCell
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Box>No existen tareas</Box>
+                    <Box sx={{ display: "flex" }}>
+                      <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
+                        <Box>
+                          <Box>
+                            <Icon>
+                              <ReportGmailerrorredIcon />
+                            </Icon>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
