@@ -6,11 +6,6 @@ import {
   doc,
   getDoc,
   setDoc,
-  // addDoc,
-  // getDocs,
-  // query,
-  // where,
-  // deleteDoc
 } from "firebase/firestore"
 
 const firebaseConfig = {
