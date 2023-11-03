@@ -45,7 +45,6 @@ const Tasks = ({ tasks }) => {
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <Box>{row?.name}</Box>
-                    {/* <Box>{row?.status}</Box> */}
                     <Box sx={{ display: "flex" }}>
                       <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
                         <Box>
@@ -72,9 +71,9 @@ const Tasks = ({ tasks }) => {
                   <TableCell
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <Box>No existen tareas</Box>
+                    <Box>There are no tasks</Box>
                     <Box sx={{ display: "flex" }}>
-                      <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
+                      <Box sx={{ display:"flex", gap:1 }}>
                         <Box>
                           <Box>
                             <Icon>
