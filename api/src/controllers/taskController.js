@@ -67,10 +67,11 @@ const getTasksByUserOff = async (user) => {
   }
 };
 
-const getTasksByStatus = async (status) => {
+const getTasksByStatus = async (user,status) => {
   try {
     let tasks = await Task.findAll({
       where: {
+        user:user,
         status: status,
       },
     });

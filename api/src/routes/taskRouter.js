@@ -7,7 +7,7 @@ const {
     deleteTask,
     updateStatusTask,
     updateTask,
-    getTasksByStatus,
+  getTasksByStatus
 } = require("../controllers/taskController");
 
 const { User } = require("../db")
@@ -32,9 +32,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/status/on", async (req, res) => {
+router.get("/on", async (req, res) => {
+  const { user } = req.params;
   try {
-    const task_by_status = await getTasksByStatus("ON");
+    const task_by_status = await getTasksByStatus(user,"OFF");
 
     return res.status(200).json(task_by_status);
 
@@ -43,9 +44,10 @@ router.get("/status/on", async (req, res) => {
   }
 });
 
-router.get("/status/off", async (req, res) => {
+router.get("/off", async (req, res) => {
+  const { user } = req.body;
   try {
-    const task_by_status = await getTasksByStatus("OFF");
+    const task_by_status = await getTasksByStatus(user,"OFF");
 
     return res.status(200).json(task_by_status);
 
@@ -65,15 +67,6 @@ router.post("/", async (req, res) => {
       user 
     );
 
-    // let userDB = await User.findOne({
-    //   where: {
-    //     name: user,
-    //   },
-    // })
-
-    // newTask.setUser(userDB)
-
-    //Return
     return res.status(200).json(newTask);
   } catch (error) {
     return res.status(400).json({ error: error.message });
