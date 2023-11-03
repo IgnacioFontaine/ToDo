@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { getTaskUser, setUser } from "../../Redux/actions"
-import Tasks from "../Tasks/tasks";
-import TasksOff from "../Tasks/tasksOff";
-import { auth } from "../../firebase/firebase";
+import { auth } from "../Firebase/firebase"
+import Home from "../Home/home";
+import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material"
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const dispatch = useDispatch()
+const PrivateRoute = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const user = useSelector((state) => state?.current_user);
 
   useEffect(() => {
@@ -17,21 +18,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
         console.log("No user logged in");
+        navigate("/login");
       }
     });
 
     return unsubscribe;
-  }, [dispatch, user]);
+  }, [dispatch, user, navigate]);
 
   if (!user) {
-    return <Redirect to="/login" />;
+    navigate("/login");
+    return (
+      <Box>
+        {navigate("/login")}
+      </Box>
+      )
   }
 
   return (
-    <Component {...rest}>
-      <Tasks tasks={rest.tasks_on} />
-      <TasksOff tasks={rest.tasks_off} />
-    </Component>
+      <Home />
   );
 };
 

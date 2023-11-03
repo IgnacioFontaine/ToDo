@@ -1,9 +1,10 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import Home from './Components/Home/home';
+// import Home from './Components/Home/home';
 import CreateUser from './Components/CreateUser/createUser';
 import Error from './Components/Error/error';
 import LoginFirebase from './Components/LoginFirebase/loginFirebase';
+import PrivateRoute from './Components/PrivateRouter/privateRouter';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Routes>
 
         <Route path="/login" element={<LoginFirebase />} />
-        <Route  path="/" element={<Home  /> } />
+        <Route path="/" element={<PrivateRoute />} />
         <Route path="/register" element={<CreateUser />} />
         <Route path="*" element={<Error />} />
 
