@@ -9,15 +9,15 @@ import TasksOff from "../Tasks/tasksOff";
 const Home = () => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state?.current_user);
-  const Tasks_on = useSelector((state) => state?.on_task);
-  const Tasks_off = useSelector((state) => state?.off_task);
+
+  const Tasks_on = useSelector((state) => state.on_task);
+  const Tasks_off = useSelector((state) => state.off_task);
 
   useEffect(() => {
     dispatch(setUser(user));
     dispatch(getTaskUser(user));
 
-  }, [dispatch,user,Tasks_off, Tasks_on]);
-
+  }, [dispatch,user, Tasks_on, Tasks_off]);
 
   if (!user) {
     <Box>

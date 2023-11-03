@@ -58,7 +58,6 @@ const LoginFirebase = () => {
       try {
         const res = await signInWithPopup(auth, googleProvider);
         navigate("/");
-        console.log(res);
       } catch (error) {
         console.error(error)
       }
