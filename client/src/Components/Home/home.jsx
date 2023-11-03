@@ -15,12 +15,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(setUser(user));
     dispatch(getTaskUser(user));
-    
+
   }, [dispatch,user,Tasks_off, Tasks_on]);
-
-  
-  
-
 
 
   if (!user) {
