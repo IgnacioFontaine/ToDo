@@ -46,7 +46,7 @@ export default function FadeMenu() {
         TransitionComponent={Fade}
           
         >
-          <MenuItem ><PersonIcon />  {name_user}</MenuItem>
+          <MenuItem ><PersonIcon />   {name_user}</MenuItem>
           <MenuItem onClick={() =>  logout()}>Logout</MenuItem>
       </Menu>
     </Box>

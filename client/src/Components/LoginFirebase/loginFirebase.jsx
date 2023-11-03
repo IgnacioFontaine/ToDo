@@ -10,7 +10,6 @@ import {
 import { useDispatch } from "react-redux";
 import { setUser } from "../../Redux/actions";
 
-
 const EMPTY_FORM = {
   email: "",
   contraseña:""
@@ -73,7 +72,7 @@ const LoginFirebase = () => {
       <Box sx={{ alignContent:"center",alignItems:"center" ,boxShadow: 2, m:15, p:4, bgcolor:"#E6E6E6", borderRadius:5 }}>
         <Box sx={{ display: "flex", flexDirection: "column", m: 5, borderColor: "black" }}>
           <Box>
-            <Typography variant="h1" >To Do App</Typography>
+            <Typography variant="h1">To Do App</Typography>
           </Box>
           <Box >
             <Box>
