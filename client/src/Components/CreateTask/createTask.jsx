@@ -15,7 +15,18 @@ const CreateTask = () => {
   name:"",
   status: "ON",
   user: currentUser.uid
-});
+  });
+
+  console.log(currentUser);
+  
+  const disableSubmitButton = () => {
+    if (
+      currentUser.displayName.length > 0 
+    ) {
+      return false;
+    }
+    return true;
+  };
 
 
   const handleChange = (event) =>
@@ -61,6 +72,7 @@ const CreateTask = () => {
             color: "black",
             bgcolor: "whitesmoke",
               }}
+            disabled={disableSubmitButton()}
           >Create</Button>
         </Box>
         </Box>

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTask from "../CreateTask/createTask";
@@ -20,9 +20,11 @@ const Home = () => {
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+
         const uid = user.uid;
 
         const exists = await userExists(uid);
+        dispatch(setUser(user));
 
         if (!exists) {
           navigate("/login");
@@ -31,17 +33,16 @@ const Home = () => {
         navigate("/login");
       }
     });
-  }, [navigate]);
+  }, [dispatch]);
 
   const Tasks_on = useSelector((state) => state?.on_task);
   const Tasks_off = useSelector((state) => state?.off_task);
 
 
   useEffect(() => {
-    dispatch(setUser(user));
     dispatch(getTaskUser(user));
     
-  }, [dispatch, user, Tasks_on, Tasks_off]);
+  }, [Tasks_on, Tasks_off]);
 
 
     return (
