@@ -5,24 +5,52 @@ import CreateTask from "../CreateTask/createTask";
 import { getTaskUser, setUser } from "../../Redux/actions"
 import Tasks from "../Tasks/tasks";
 import TasksOff from "../Tasks/tasksOff";
+import {
+  auth,
+  userExists
+} from "../Firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const user = useSelector((state) => state?.current_user);
 
-  const Tasks_on = useSelector((state) => state.on_task);
-  const Tasks_off = useSelector((state) => state.off_task);
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const uid = user.uid;
+
+        const exists = await userExists(uid);
+
+        if (exists) {
+          navigate("/");
+        } else {
+          navigate("/login");
+        }
+      } else {
+        navigate("/login");
+      }
+    });
+  }, [navigate]);
+
+  const Tasks_on = useSelector((state) => state?.on_task);
+  const Tasks_off = useSelector((state) => state?.off_task);
+
 
   useEffect(() => {
     dispatch(setUser(user));
     dispatch(getTaskUser(user));
-
-  }, [dispatch,user, Tasks_on, Tasks_off]);
+    
+  }, [dispatch, user, Tasks_on, Tasks_off]);
 
   if (!user) {
-    <Box>
-      <Typography>No existe user</Typography>
-    </Box>
+    return (
+      <Box>
+        <Typography>No user</Typography>
+      </Box>
+    )
   }
 
   if (user) {
