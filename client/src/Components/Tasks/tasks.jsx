@@ -14,7 +14,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { useDispatch} from "react-redux";
 import { deleteTask, modifyStatusTask } from "../../Redux/actions"
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks }, darkMode) => {
   const dispatch = useDispatch()
 
   const handleDelete = (id) => {
@@ -35,7 +35,7 @@ const Tasks = ({ tasks }) => {
           component={Paper}
         >
             <Table >
-              <TableHead sx={{height: "6vh", overflow: "auto", color:"black"}}>
+              <TableHead sx={{height: "6vh", overflow: "auto", color: "black"}}>
                 <Typography variant="h4" sx={{m:1}} >Task On:</Typography>
               </TableHead>
             <TableBody style={{}}>

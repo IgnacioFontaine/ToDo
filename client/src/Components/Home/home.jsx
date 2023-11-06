@@ -47,7 +47,7 @@ const Home = () => {
     
   }, [dispatch, Tasks_on, Tasks_off]);
 
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(false);
   
   function handleChangeLight() {
     if (darkMode === true) {
@@ -60,21 +60,21 @@ const Home = () => {
     
 
     return (
-      <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "#686868"}}>
+      <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "#494949"}}>
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
             <Box sx={{display: 'flex', mt:5} }>
               <CreateTask />
-              <IconButton sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'background.default', color: 'text.primary', borderRadius: 3, p:1 }}  > 
+              <IconButton sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'background.default', color: 'text.primary', borderRadius: 3, p:1 }} onClick={()=>handleChangeLight()} > 
                   {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
             </Box>
           </Box>
           <Box sx={{display:"flex", m:3}}>
               <Box>
-                <Tasks tasks={Tasks_on} darkMode={darkMode} ></Tasks>
+                <Tasks tasks={Tasks_on} />
               </Box>
               <Box>
-                <TasksOff tasks={Tasks_off} darkMode={darkMode} ></TasksOff>
+                <TasksOff tasks={Tasks_off} />
               </Box>
             <Box>
             </Box>
