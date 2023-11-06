@@ -38,11 +38,10 @@ const Home = () => {
   const Tasks_on = useSelector((state) => state?.on_task);
   const Tasks_off = useSelector((state) => state?.off_task);
 
-
   useEffect(() => {
     dispatch(getTaskUser(user));
     
-  }, [Tasks_on, Tasks_off]);
+  }, [dispatch,Tasks_on, Tasks_off]);
 
 
     return (

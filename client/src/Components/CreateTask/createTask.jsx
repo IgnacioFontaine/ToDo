@@ -6,7 +6,6 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import Menu from "../Menu/menu"
 
 
-
 const CreateTask = () => {
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state?.current_user)
@@ -16,17 +15,6 @@ const CreateTask = () => {
   status: "ON",
   user: currentUser.uid
   });
-
-  console.log(currentUser);
-  
-  const disableSubmitButton = () => {
-    if (
-      currentUser.displayName.length > 0 
-    ) {
-      return false;
-    }
-    return true;
-  };
 
 
   const handleChange = (event) =>
@@ -72,11 +60,14 @@ const CreateTask = () => {
             color: "black",
             bgcolor: "whitesmoke",
               }}
-            disabled={disableSubmitButton()}
+            // disabled={disableSubmitButton()}
           >Create</Button>
         </Box>
         </Box>
       </form>
+      <Box>
+        <Button></Button>
+      </Box>
     </Box>        
   )
 }

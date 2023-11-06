@@ -43,8 +43,9 @@ const Tasks = ({ tasks }) => {
                 <TableRow key={row?.id}>
                   <TableCell
                     sx={{ display: "flex", justifyContent: "space-between" }}
+                   
                   >
-                    <Box>{row?.name}</Box>
+                    <Box >{row?.name}</Box>
                     <Box sx={{ display: "flex" }}>
                       <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
                         <Box>

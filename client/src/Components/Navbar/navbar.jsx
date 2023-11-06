@@ -1,4 +1,5 @@
-import {Box,Typography} from "@mui/material"
+import { Box, Typography } from "@mui/material"
+
 import Menu from "../Menu/menu";
 const NavBar = () => {
   return (

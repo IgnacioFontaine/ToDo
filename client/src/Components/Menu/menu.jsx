@@ -4,12 +4,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, Icon } from "@mui/material"
+import { Box } from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { logout } from "../Firebase/firebase"
-import NightlightIcon from '@mui/icons-material/Nightlight';
-import Brightness5Icon from '@mui/icons-material/Brightness5';
+import { logout } from "../Firebase/firebase";
 
 
 export default function FadeMenu() {
@@ -49,7 +47,6 @@ export default function FadeMenu() {
           
         >
           <MenuItem ><PersonIcon />   {name_user}</MenuItem>
-          <MenuItem ><Icon><NightlightIcon /> ||  <Brightness5Icon /></Icon></MenuItem>
           <MenuItem onClick={() =>  logout()}>Logout</MenuItem>
       </Menu>
     </Box>
