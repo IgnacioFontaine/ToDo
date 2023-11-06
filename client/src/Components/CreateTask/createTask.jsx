@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { createTask } from "../../Redux/actions"
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import Menu from "../Menu/menu"
+import LightButton from "../LightButton/lightButton"
 
 
 const CreateTask = () => {
@@ -62,12 +63,12 @@ const CreateTask = () => {
               }}
             // disabled={disableSubmitButton()}
           >Create</Button>
-        </Box>
+          </Box>
+          <Box>
+            <LightButton />
+          </Box>
         </Box>
       </form>
-      <Box>
-        <Button></Button>
-      </Box>
     </Box>        
   )
 }
