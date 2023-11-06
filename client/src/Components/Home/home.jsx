@@ -60,7 +60,7 @@ const Home = () => {
     
 
     return (
-      <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "black"}}>
+      <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "#686868"}}>
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
             <Box sx={{display: 'flex', mt:5} }>
               <CreateTask />
@@ -71,10 +71,10 @@ const Home = () => {
           </Box>
           <Box sx={{display:"flex", m:3}}>
               <Box>
-                <Tasks tasks={Tasks_on} ></Tasks>
+                <Tasks tasks={Tasks_on} darkMode={darkMode} ></Tasks>
               </Box>
               <Box>
-                <TasksOff tasks={Tasks_off} ></TasksOff>
+                <TasksOff tasks={Tasks_off} darkMode={darkMode} ></TasksOff>
               </Box>
             <Box>
             </Box>
