@@ -14,13 +14,13 @@ function LightButton() {
     <Box
       sx={{
         display: 'flex',
-        width: '100%',
+        width: '30%',
         alignItems: 'center',
         justifyContent: 'center',
-        bgcolor: 'background.default',
+        bgcolor: 'none',
         color: 'text.primary',
-        borderRadius: 1,
-        p: 3,
+        borderRadius: 3,
+        p:1
       }}
     >
       <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">

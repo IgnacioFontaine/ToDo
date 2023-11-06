@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import { useEffect } from "react";
+import { useEffect, useState  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTask from "../CreateTask/createTask";
 import { getTaskUser, setUser } from "../../Redux/actions"
@@ -11,6 +11,7 @@ import {
 } from "../Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -41,7 +42,18 @@ const Home = () => {
   useEffect(() => {
     dispatch(getTaskUser(user));
     
-  }, [dispatch,Tasks_on, Tasks_off]);
+  }, [dispatch, Tasks_on, Tasks_off]);
+
+  const [darkMode, setDarkMode] = useState(false)
+  
+  function handleChangeLight() {
+    if (darkMode === true) {
+      setDarkMode(false);
+    } else {
+      setDarkMode(true);
+    }
+  }
+    
 
     return (
       <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5,bgcolor:"#A5A5A5" }}>
