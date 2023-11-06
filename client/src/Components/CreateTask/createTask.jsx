@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { createTask } from "../../Redux/actions"
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import Menu from "../Menu/menu"
-import LightButton from "../LightButton/lightButton"
 
 
 const CreateTask = () => {
@@ -29,17 +28,16 @@ const CreateTask = () => {
           status: "ON",
           user: currentUser.uid
     })
-
   };
 
   return (
-    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"35vw", boxShadow:2}}>
+    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"32vw", boxShadow:2 ,height:"9vh"}}>
       <form onSubmit={handleSubmit}>
-        <Box sx={{ display: "flex", gap: 5, alignItems: "center", textAlign:"center", m:5 }}>
-          <Box ml={2}>
+        <Box sx={{ display: "flex", gap: 4, alignItems: "center", textAlign:"center" }}>
+          <Box ml={3}>
             <Menu />
           </Box>
-          <Box padding={1}>
+          <Box >
             <TextField
 
                 label="New Task"
@@ -61,11 +59,7 @@ const CreateTask = () => {
             color: "black",
             bgcolor: "whitesmoke",
               }}
-            // disabled={disableSubmitButton()}
           >Create</Button>
-          </Box>
-          <Box>
-            <LightButton />
           </Box>
         </Box>
       </form>

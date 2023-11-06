@@ -11,6 +11,9 @@ import {
 } from "../Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import IconButton from '@mui/material/IconButton';
 
 
 const Home = () => {
@@ -44,7 +47,7 @@ const Home = () => {
     
   }, [dispatch, Tasks_on, Tasks_off]);
 
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
   
   function handleChangeLight() {
     if (darkMode === true) {
@@ -52,14 +55,18 @@ const Home = () => {
     } else {
       setDarkMode(true);
     }
+    return darkMode;
   }
     
 
     return (
-      <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5,bgcolor:"#A5A5A5" }}>
+      <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "black"}}>
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
-            <Box>
+            <Box sx={{display: 'flex', mt:5} }>
               <CreateTask />
+              <IconButton sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'background.default', color: 'text.primary', borderRadius: 3, p:1 }}  > 
+                  {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
             </Box>
           </Box>
           <Box sx={{display:"flex", m:3}}>
