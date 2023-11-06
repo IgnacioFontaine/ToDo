@@ -24,11 +24,9 @@ const Home = () => {
 
         const exists = await userExists(uid);
 
-        if (exists) {
-          navigate("/");
-        } else {
+        if (!exists) {
           navigate("/login");
-        }
+        } 
       } else {
         navigate("/login");
       }
@@ -45,15 +43,7 @@ const Home = () => {
     
   }, [dispatch, user, Tasks_on, Tasks_off]);
 
-  if (!user) {
-    return (
-      <Box>
-        <Typography>No user</Typography>
-      </Box>
-    )
-  }
 
-  if (user) {
     return (
       <Box sx={{ height: "91.5vh", boxShadow: 2, display:"flex", flexDirection:"column", alignContent:"center", alignItems:"center", p:5,bgcolor:"#A5A5A5" }}>
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
@@ -73,7 +63,7 @@ const Home = () => {
           </Box>
         </Box>
     );
-  }
+  
 };
 
 export default Home;
