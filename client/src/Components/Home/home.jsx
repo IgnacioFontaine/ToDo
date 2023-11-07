@@ -1,21 +1,17 @@
-import { Box, Grid, ThemeProvider } from "@mui/material"
+import { Box, Grid } from "@mui/material"
 import { useEffect, useState  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTask from "../CreateTask/createTask";
 import { getTaskUser, setUser } from "../../Redux/actions"
 import Tasks from "../Tasks/tasks";
 import TasksOff from "../Tasks/tasksOff";
-import {
-  auth,
-  userExists
-} from "../Firebase/firebase";
+import { auth, userExists } from "../Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import IconButton from '@mui/material/IconButton';
 import "../Styles/styles"
-import { styled } from "@mui/material/styles";
 import {theme} from "../Styles/styles"
 
 
@@ -60,33 +56,71 @@ const Home = () => {
     }
     return darkMode;
   }
+  
+  const styles = {
+    container: {
+      height: "91.5vh",
+      boxShadow: 2,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: 5,
+      backgroundColor: darkMode ? "#A5A5A5" : "#494949",
+    },
+    buttonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      height: "150vh",
+      mt:2
+    },
+  };
     
 
-    return (
-    <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "#494949"}}>
-          <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
-              <Box sx={{display: 'flex', mt:5} }>
-                <CreateTask />
-                <IconButton  sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'whitesmoke', borderRadius: 3, p:1 }} onClick={()=>handleChangeLight()} > 
-                    {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-                </IconButton>
-              </Box>
-            </Box>
-          <Box sx={{ display: "flex", mt:2 }}>
-            <Grid container spacing={0.5}>
-              <Grid item>
-                <Tasks tasks={Tasks_on} />
-              </Grid>
-              <Grid item>
-                <TasksOff tasks={Tasks_off} />
-              </Grid>
-            </Grid>
-          <Box>
+   return (
+    <Box sx={styles.container}>
+      <Box sx={{ display: "flex", alignContent: "center", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            mt: 5,
+            [theme.breakpoints.up("tablet")]: {
+              flexDirection: "row",
+            },
+            [theme.breakpoints.up("desktop")]: {
+              flexDirection: "row",
+            },
+          }}
+        >
+          <CreateTask />
+          <IconButton
+            sx={{
+              display: "flex",
+              width: "15%",
+              alignItems: "center",
+              justifyContent: "center",
+              bgcolor: "whitesmoke",
+              borderRadius: 3,
+              p: 1,
+            }}
+            onClick={handleChangeLight}
+          >
+            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
         </Box>
       </Box>
+      <Box sx={styles.buttonContainer}>
+        <Grid container spacing={0.5}>
+          <Grid item>
+            <Tasks tasks={Tasks_on} />
+          </Grid>
+          <Grid item>
+            <TasksOff tasks={Tasks_off} />
+          </Grid>
+        </Grid>
+      </Box>
     </Box>
-    );
-  
+  );
 };
 
 export default Home;
