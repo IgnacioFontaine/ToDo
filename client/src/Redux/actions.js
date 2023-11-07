@@ -87,7 +87,7 @@ export const modifyStatusTask = (id) => {
 
 export const getTaskStatusOn = (user) => async (dispatch) => {
   try {
-    let result = await axios.get("http://localhost:3001/task/on", user);
+    let result = await axios.get(`http://localhost:3001/task/on/${user}`);
     
     return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_ON, payload: result.data });
   } catch (error) {
@@ -97,7 +97,7 @@ export const getTaskStatusOn = (user) => async (dispatch) => {
 
 export const getTaskStatusOff = (user) => async (dispatch) => {
   try {
-    let result = await axios.get("http://localhost:3001/task/off", user);
+    let result = await axios.get(`http://localhost:3001/task/off/${user}`);
     
     return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_OFF, payload: result.data });
   } catch (error) {
