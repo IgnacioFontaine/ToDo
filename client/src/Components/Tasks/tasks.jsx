@@ -11,6 +11,7 @@ import {
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch} from "react-redux";
 import { deleteTask, modifyStatusTask, modifyTask } from "../../Redux/actions"
 
@@ -48,7 +49,14 @@ const Tasks = ({tasks}) => {
                   <TableCell
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <Box>{row?.name}</Box>
+                    <Box>
+                      {row?.name}
+                    </Box>
+                    <Box>
+                      <Icon>
+                        <EditIcon onClick={() => handleUpdateName(row?.id, row?.name, row?.status )} />
+                      </Icon>
+                    </Box>
                     <Box sx={{ display: "flex" }}>
                       <Box sx={{ cursor: "pointer", display:"flex", gap:1 }}>
                         <Box>
