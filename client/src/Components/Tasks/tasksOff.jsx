@@ -14,7 +14,7 @@ import { useDispatch} from "react-redux";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { deleteTask, modifyStatusTask } from "../../Redux/actions"
 
-const Tasks = ({ tasks }, darkMode) => {
+const Tasks = ({ tasks }) => {
   const dispatch = useDispatch()
 
   const handleDelete = (id) => {

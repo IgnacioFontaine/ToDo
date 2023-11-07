@@ -39,34 +39,6 @@ const getTasksByUser = async (user) => {
   }
 };
 
-// const getTasksByUserOn = async (user) => {
-//   try {
-//     let tasks = await Task.findAll({
-//       where: {
-//         user: user,
-//         status:"ON"
-//       },
-//     });
-//     return tasks;
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
-
-// const getTasksByUserOff = async (user) => {
-//   try {
-//     let tasks = await Task.findAll({
-//       where: {
-//         user: user,
-//         status:"OFF"
-//       },
-//     });
-//     return tasks;
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
-
 const getTasksByStatus = async (user,status) => {
   try {
     let tasks = await Task.findAll({

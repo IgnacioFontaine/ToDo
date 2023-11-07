@@ -90,6 +90,7 @@ export const getTaskStatusOn = (user) => async (dispatch) => {
     let result = await axios.get(`http://localhost:3001/task/on/${user}`);
     
     return dispatch({ type: ACTION_TYPES.GET_TASKS_STATUS_ON, payload: result.data });
+
   } catch (error) {
     return dispatch({ type: ACTION_TYPES.ERROR, payload: error });
   }
