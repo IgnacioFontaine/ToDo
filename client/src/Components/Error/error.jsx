@@ -13,7 +13,8 @@ const Error = () => {
           <Typography variant="h1">Error 404</Typography>
         </Box>
         <Box>
-          <Typography variant="h2">Return to home</Typography>
+            <Typography variant="h2">Return to home or Login</Typography>
+            <Button sx={{boxShadow:2,height: "7vh", width: "11vw"}} onClick={()=>navigate("/")}>Home</Button>
           <Button sx={{boxShadow:2,height: "7vh", width: "11vw"}} onClick={()=>navigate("/login")}>Login</Button>
         </Box>
       </Box>
