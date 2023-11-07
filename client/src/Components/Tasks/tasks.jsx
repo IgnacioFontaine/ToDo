@@ -12,7 +12,7 @@ import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { useDispatch} from "react-redux";
-import { deleteTask, modifyStatusTask } from "../../Redux/actions"
+import { deleteTask, modifyStatusTask, modifyTask } from "../../Redux/actions"
 
 const Tasks = ({tasks}) => {
   const dispatch = useDispatch()
@@ -25,6 +25,10 @@ const Tasks = ({tasks}) => {
   const handleUpdateStatus = (id) => {
     dispatch(modifyStatusTask(id));
     
+  }
+
+  const handleUpdateName = (id, name, status) => {
+    dispatch(modifyTask(id, name , status));
   }
 
   return (
