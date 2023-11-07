@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material"
+import { Box, Grid, ThemeProvider } from "@mui/material"
 import { useEffect, useState  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTask from "../CreateTask/createTask";
@@ -14,6 +14,9 @@ import { useNavigate } from "react-router-dom";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import IconButton from '@mui/material/IconButton';
+import "../Styles/styles"
+import { styled } from "@mui/material/styles";
+import {theme} from "../Styles/styles"
 
 
 const Home = () => {
