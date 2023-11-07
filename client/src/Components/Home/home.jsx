@@ -64,12 +64,12 @@ const Home = () => {
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
               <Box sx={{display: 'flex', mt:5} }>
                 <CreateTask />
-                <IconButton  sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'whitesmoke', borderRadius: 3,      p:1 }} onClick={()=>handleChangeLight()} > 
+                <IconButton  sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'whitesmoke', borderRadius: 3, p:1 }} onClick={()=>handleChangeLight()} > 
                     {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
               </Box>
             </Box>
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", mt:2 }}>
             <Grid container spacing={0.5}>
               <Grid item>
                 <Tasks tasks={Tasks_on} />
