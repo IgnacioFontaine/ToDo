@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Grid } from "@mui/material"
 import { useEffect, useState  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateTask from "../CreateTask/createTask";
@@ -60,26 +60,28 @@ const Home = () => {
     
 
     return (
-      <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "#494949"}}>
+    <Box sx={{ height: "91.5vh", boxShadow: 2, display: "flex", flexDirection: "column", alignContent: "center", alignItems: "center", p: 5, bgcolor: darkMode ? "#A5A5A5" : "#494949"}}>
           <Box sx={{ display: "flex",alignContent:"center", alignItems:"center" }} >
-            <Box sx={{display: 'flex', mt:5} }>
-              <CreateTask />
-              <IconButton  sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'whitesmoke', borderRadius: 3, p:1 }} onClick={()=>handleChangeLight()} > 
-                  {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-              </IconButton>
+              <Box sx={{display: 'flex', mt:5} }>
+                <CreateTask />
+                <IconButton  sx={{display: 'flex', width: '15%', alignItems: 'center',justifyContent: 'center', bgcolor: 'whitesmoke', borderRadius: 3,      p:1 }} onClick={()=>handleChangeLight()} > 
+                    {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                </IconButton>
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{display:"flex", m:3}}>
-              <Box>
+          <Box sx={{ display: "flex" }}>
+            <Grid container spacing={0.5}>
+              <Grid item>
                 <Tasks tasks={Tasks_on} />
-              </Box>
-              <Box>
+              </Grid>
+              <Grid item>
                 <TasksOff tasks={Tasks_off} />
-              </Box>
-            <Box>
-            </Box>
-          </Box>
+              </Grid>
+            </Grid>
+          <Box>
         </Box>
+      </Box>
+    </Box>
     );
   
 };
