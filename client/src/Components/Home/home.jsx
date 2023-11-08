@@ -92,20 +92,20 @@ const Home = () => {
             },
           }}
         >
-          <CreateTask darkMode={darkMode} />
+          <CreateTask  />
           <IconButton
             sx={{
               display: "flex",
               width: "15%",
               alignItems: "center",
               justifyContent: "center",
-              bgcolor: "whitesmoke",
+              bgcolor: darkMode ? "#A5A5A5" : "#494949",
               borderRadius: 3,
               p: 1,
             }}
             onClick={handleChangeLight}
           >
-            {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            {darkMode ? <Brightness7Icon  /> : <Brightness4Icon  />}
           </IconButton>
         </Box>
       </Box>
