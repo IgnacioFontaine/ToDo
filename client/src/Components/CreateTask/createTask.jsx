@@ -6,7 +6,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import Menu from "../Menu/menu"
 
 
-const CreateTask = () => {
+const CreateTask = ({darkMode}) => {
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state?.current_user)
 
@@ -31,7 +31,7 @@ const CreateTask = () => {
   };
 
   return (
-    <Box sx={{bgcolor:"whitesmoke", borderRadius:4, width:"35vw", boxShadow:2 ,height:"10vh"}}>
+    <Box sx={{ bgcolor: darkMode ? "whitesmoke" : "#0F0F0F" , color: darkMode ? "black":"white", borderRadius:4, width:"35vw", boxShadow:2 ,height:"10vh"}}>
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", gap: 4, alignItems: "center", textAlign:"center" }}>
           <Box ml={3}>
@@ -48,7 +48,10 @@ const CreateTask = () => {
                 onChange={handleChange}
                 fullWidth
                 margin="normal"
-              sx={{ borderColor: "grey", color: "grey" }}
+                sx={{
+                bgcolor: darkMode ? "whitesmoke" : "#0F0F0F",
+                color: darkMode ? "black" : "#FFFFFF"
+              }}
               
             />
           </Box>
@@ -56,8 +59,8 @@ const CreateTask = () => {
           <Button
             type="submit"
             sx={{
-            color: "black",
-            bgcolor: "whitesmoke",
+                bgcolor: darkMode ? "whitesmoke" : "#0F0F0F",
+                color: darkMode ? "black" : "#FFFFFF"
               }}
           >Create</Button>
           </Box>

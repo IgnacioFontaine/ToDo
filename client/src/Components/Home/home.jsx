@@ -92,7 +92,7 @@ const Home = () => {
             },
           }}
         >
-          <CreateTask />
+          <CreateTask darkMode={darkMode} />
           <IconButton
             sx={{
               display: "flex",
