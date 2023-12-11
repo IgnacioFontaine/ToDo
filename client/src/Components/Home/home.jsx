@@ -115,7 +115,7 @@ const Home = () => {
       <Box sx={styles.buttonContainer}>
         <Grid container spacing={0.5}>
           <Grid item>
-            <Tasks tasks={Tasks_on} />
+            <Tasks tasks={Tasks_on}  />
           </Grid>
           <Grid item>
             <TasksOff tasks={Tasks_off} />
