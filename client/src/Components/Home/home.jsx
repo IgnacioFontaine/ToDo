@@ -36,15 +36,18 @@ const Home = () => {
         navigate("/login");
       }
     });
-  }, []);
+  }, [dispatch, navigate]);
 
+  
   const Tasks_on = useSelector((state) => state?.on_task);
   const Tasks_off = useSelector((state) => state?.off_task);
 
   useEffect(() => {
     dispatch(getTaskUser(user));
     
-  }, [Tasks_off, Tasks_on]);
+  }, [dispatch, user, Tasks_off, Tasks_on]);
+
+  
 
   const [darkMode, setDarkMode] = useState(false);
   
